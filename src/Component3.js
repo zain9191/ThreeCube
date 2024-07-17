@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Component3 = () => {
+const Component3 = ({ className }) => {
   return (
-    <div style={{ backgroundColor: '#443432', padding: '20px' }}>
+    <div className={className}>
       <h1>Component 3</h1>
       <p>Details about component 3</p>
     </div>

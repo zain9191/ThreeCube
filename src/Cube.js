@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Html } from '@react-three/drei';
+import { Html, OrbitControls } from '@react-three/drei';
 import { DoubleSide } from 'three';
 import Component1 from './Component1';
 import Component2 from './Component2';
@@ -11,48 +11,56 @@ import Component6 from './Component6';
 
 const Cube = () => {
   const ref = useRef();
-  const { gl, camera } = useThree();
+  const { gl } = useThree();
   const [isDragging, setIsDragging] = useState(false);
   const [initialMousePosition, setInitialMousePosition] = useState([0, 0]);
-  const [cubeRotation, setCubeRotation] = useState([0, 0]);
+  const [targetRotation, setTargetRotation] = useState([0, 0]);
 
-  const handlePointerDown = (event) => {
+  const handlePointerDown = useCallback((event) => {
     setIsDragging(true);
     setInitialMousePosition([event.clientX, event.clientY]);
-    event.target.setPointerCapture(event.pointerId); // Capture the mouse
-  };
+    event.target.setPointerCapture(event.pointerId);
+  }, []);
 
-  const handlePointerUp = (event) => {
+  const handlePointerUp = useCallback((event) => {
     setIsDragging(false);
-    event.target.releasePointerCapture(event.pointerId); // Release the pointer mouse
-  };
+    event.target.releasePointerCapture(event.pointerId);
+  }, []);
 
-  const handlePointerMove = (event) => {
+  const handlePointerMove = useCallback((event) => {
     if (isDragging) {
-      const deltaX = (event.clientX - initialMousePosition[0]) / gl.domElement.clientWidth * 2 * Math.PI;
-      const deltaY = (event.clientY - initialMousePosition[1]) / gl.domElement.clientHeight * 2 * Math.PI;
-      setCubeRotation((prevRotation) => [
+      const deltaX = ((event.clientX - initialMousePosition[0]) / gl.domElement.clientWidth) * 2 * Math.PI;
+      const deltaY = ((event.clientY - initialMousePosition[1]) / gl.domElement.clientHeight) * 2 * Math.PI;
+      setTargetRotation((prevRotation) => [
         prevRotation[0] + deltaY,
-        prevRotation[1] + deltaX
+        prevRotation[1] + deltaX,
       ]);
       setInitialMousePosition([event.clientX, event.clientY]);
     }
+  }, [isDragging, initialMousePosition, gl.domElement.clientWidth, gl.domElement.clientHeight]);
+
+  const quantizeRotation = (rotation) => {
+    const x = Math.round(rotation[0] / (Math.PI / 2)) * (Math.PI / 2);
+    const y = Math.round(rotation[1] / (Math.PI / 2)) * (Math.PI / 2);
+    return [x, y];
   };
 
-  const handleKeyDown = (event) => {
-    const rotationStep = 0.05; //  rotation steps
-    switch (event.key) {
-      case 'ArrowUp':
-        camera.rotation.x -= rotationStep;
+  const adjustRotation = (direction) => {
+    const rotationStep = Math.PI / 2;
+    const currentRotation = quantizeRotation([ref.current.rotation.x, ref.current.rotation.y]);
+
+    switch (direction) {
+      case 'up':
+        setTargetRotation([currentRotation[0] - rotationStep, currentRotation[1]]);
         break;
-      case 'ArrowDown':
-        camera.rotation.x += rotationStep;
+      case 'down':
+        setTargetRotation([currentRotation[0] + rotationStep, currentRotation[1]]);
         break;
-      case 'ArrowLeft':
-        camera.rotation.y -= rotationStep;
+      case 'left':
+        setTargetRotation([currentRotation[0], currentRotation[1] - rotationStep]);
         break;
-      case 'ArrowRight':
-        camera.rotation.y += rotationStep;
+      case 'right':
+        setTargetRotation([currentRotation[0], currentRotation[1] + rotationStep]);
         break;
       default:
         break;
@@ -60,43 +68,48 @@ const Cube = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
+    const handleAdjustCubeRotation = (event) => {
+      adjustRotation(event.detail);
+    };
+    
+    window.addEventListener('adjustCubeRotation', handleAdjustCubeRotation);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('adjustCubeRotation', handleAdjustCubeRotation);
     };
   }, []);
 
   useFrame(() => {
     if (ref.current) {
-      ref.current.rotation.set(cubeRotation[0], cubeRotation[1], 0);
+      ref.current.rotation.x += (targetRotation[0] - ref.current.rotation.x) * 0.1;
+      ref.current.rotation.y += (targetRotation[1] - ref.current.rotation.y) * 0.1;
     }
   });
 
   const components = [
-    <Component1 key={1} />,
-    <Component2 key={2} />,
-    <Component3 key={3} />,
-    <Component4 key={4} />,
-    <Component5 key={5} />,
-    <Component6 key={6} />,
+    Component1,
+    Component2,
+    Component3,
+    Component4,
+    Component5,
+    Component6,
   ];
 
   const positions = [
-    [0, 0, 5],  // f
-    [5, 0, 0],  // r
-    [0, 0, -5], // b
-    [-5, 0, 0], // l
-    [0, 5, 0],  // t
-    [0, -5, 0], // b
+    [0, 0, 5],  // Front
+    [5, 0, 0],  // Right
+    [0, 0, -5], // Back
+    [-5, 0, 0], // Left
+    [0, 5, 0],  // Top
+    [0, -5, 0], // Bottom
   ];
 
   const rotations = [
-    [0, 0, 0],            // f
-    [0, -Math.PI / 2, 0], // r
-    [0, Math.PI, 0],      // b
-    [0, Math.PI / 2, 0],  // l
-    [Math.PI / 2, 0, 0],  // t
-    [-Math.PI / 2, 0, 0], // b
+    [0, 0, 0],            // Front
+    [0, Math.PI / 2, 0],  // Right
+    [0, Math.PI, 0],      // Back
+    [0, -Math.PI / 2, 0], // Left
+    [-Math.PI / 2, 0, 0], // Top
+    [Math.PI / 2, 0, 0],  // Bottom
   ];
 
   return (
@@ -105,13 +118,16 @@ const Cube = () => {
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerMove={handlePointerMove}
+      position={[0, 0, 0]}
     >
       {components.map((Component, index) => (
         <mesh key={index} position={positions[index]} rotation={rotations[index]}>
           <planeGeometry args={[10, 10]} />
           <meshBasicMaterial color="#fff" side={DoubleSide} />
           <Html transform>
-            {Component}
+            <div className={`content-wrapper component${index + 1}`}>
+              <Component />
+            </div>
           </Html>
         </mesh>
       ))}
@@ -121,10 +137,11 @@ const Cube = () => {
 
 const Scene = () => {
   return (
-    <Canvas camera={{ position: [0, 0, 10] }}>
+    <Canvas camera={{ position: [0, 0, 15] }}>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Cube />
+      <OrbitControls />
     </Canvas>
   );
 };
