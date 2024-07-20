@@ -1,24 +1,65 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Html, OrbitControls } from '@react-three/drei';
-import { DoubleSide } from 'three';
-import Component1 from './Component1';
-import Component2 from './Component2';
-import Component3 from './Component3';
-import Component4 from './Component4';
-import Component5 from './Component5';
-import Component6 from './Component6';
+import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
+import { useThree } from '@react-three/fiber';
+import { Vector3, Euler } from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import Component1 from './components/Component1';
+import Component2 from './components/Component2';
+import Component3 from './components/Component3';
+import Component4 from './components/Component4';
+import Component5 from './components/Component5';
+import Component6 from './components/Component6';
+import CubeFace from './CubeFace';
 
 const Cube = () => {
   const ref = useRef();
-  const { gl } = useThree();
+  const { gl, camera } = useThree();
   const [isDragging, setIsDragging] = useState(false);
-  const [initialMousePosition, setInitialMousePosition] = useState([0, 0]);
-  const [targetRotation, setTargetRotation] = useState([0, 0]);
+  const initialMousePosition = useRef([0, 0]);
+  const [targetRotation, setTargetRotation] = useState(new Euler(0, 0, 0));
+  const [targetPosition, setTargetPosition] = useState(new Vector3(0, 0, 15));
+  const [currentSide, setCurrentSide] = useState(0);
+  const [isInside, setIsInside] = useState(false);
+
+  const handleWheel = useCallback((event) => {
+    console.log('Wheel event:', event);
+  }, []);
+
+  useEffect(() => {
+    const controls = new OrbitControls(camera, gl.domElement);
+    controls.enablePan = false;
+    controls.enableZoom = false;
+    controls.enableRotate = false;
+
+    gl.domElement.addEventListener('wheel', handleWheel, { passive: true });
+
+    return () => {
+      gl.domElement.removeEventListener('wheel', handleWheel);
+      controls.dispose();
+    };
+  }, [camera, gl.domElement, handleWheel]);
+
+  const rotations = useMemo(() => [
+    new Euler(0, 0, 0),                  // Front
+    new Euler(0, Math.PI / 2, 0),        // Right
+    new Euler(0, Math.PI, 0),            // Back
+    new Euler(0, -Math.PI / 2, 0),       // Left
+    new Euler(-Math.PI / 2, 0, 0),       // Top
+    new Euler(Math.PI / 2, 0, 0),        // Bottom
+  ], []);
+
+  const positions = useMemo(() => [
+    new Vector3(0, 0, 15),                   // Component 1
+    new Vector3(0, 0, -15),                  // Component 2
+    new Vector3(0, 0, 15),                   // Component 3
+    new Vector3(0, 0, -15),                  // Component 4
+    new Vector3(0, 0, -15),                  // Component 5
+    new Vector3(0, 0, -15),                  // Component 6
+], []);
+
 
   const handlePointerDown = useCallback((event) => {
     setIsDragging(true);
-    setInitialMousePosition([event.clientX, event.clientY]);
+    initialMousePosition.current = [event.clientX, event.clientY];
     event.target.setPointerCapture(event.pointerId);
   }, []);
 
@@ -29,61 +70,69 @@ const Cube = () => {
 
   const handlePointerMove = useCallback((event) => {
     if (isDragging) {
-      const deltaX = ((event.clientX - initialMousePosition[0]) / gl.domElement.clientWidth) * 2 * Math.PI;
-      const deltaY = ((event.clientY - initialMousePosition[1]) / gl.domElement.clientHeight) * 2 * Math.PI;
-      setTargetRotation((prevRotation) => [
-        prevRotation[0] + deltaY,
-        prevRotation[1] + deltaX,
-      ]);
-      setInitialMousePosition([event.clientX, event.clientY]);
+      const deltaX = ((event.clientX - initialMousePosition.current[0]) / gl.domElement.clientWidth) * 2 * Math.PI;
+      const deltaY = ((event.clientY - initialMousePosition.current[1]) / gl.domElement.clientHeight) * 2 * Math.PI;
+      setTargetRotation(new Euler(
+        targetRotation.x + deltaY,
+        targetRotation.y + deltaX,
+        0
+      ));
+      initialMousePosition.current = [event.clientX, event.clientY];
     }
-  }, [isDragging, initialMousePosition, gl.domElement.clientWidth, gl.domElement.clientHeight]);
+  }, [isDragging, gl.domElement.clientWidth, gl.domElement.clientHeight, targetRotation]);
 
-  const quantizeRotation = (rotation) => {
-    const x = Math.round(rotation[0] / (Math.PI / 2)) * (Math.PI / 2);
-    const y = Math.round(rotation[1] / (Math.PI / 2)) * (Math.PI / 2);
-    return [x, y];
-  };
+  const changeSide = useCallback((direction) => {
+    const newSide = (currentSide + direction + positions.length) % positions.length;
+    setCurrentSide(newSide);
+    setTargetRotation(rotations[newSide]);
+    setTargetPosition(positions[newSide]);
 
-  const adjustRotation = (direction) => {
-    const rotationStep = Math.PI / 2;
-    const currentRotation = quantizeRotation([ref.current.rotation.x, ref.current.rotation.y]);
-
-    switch (direction) {
-      case 'up':
-        setTargetRotation([currentRotation[0] - rotationStep, currentRotation[1]]);
-        break;
-      case 'down':
-        setTargetRotation([currentRotation[0] + rotationStep, currentRotation[1]]);
-        break;
-      case 'left':
-        setTargetRotation([currentRotation[0], currentRotation[1] - rotationStep]);
-        break;
-      case 'right':
-        setTargetRotation([currentRotation[0], currentRotation[1] + rotationStep]);
-        break;
-      default:
-        break;
+    // Immediately adjust camera position and rotation for the new side
+    camera.position.copy(positions[newSide]);
+    camera.lookAt(ref.current.position);
+    if (ref.current) {
+      ref.current.rotation.copy(rotations[newSide]);
     }
-  };
+
+    // Log the camera position
+    console.log('Camera position:', camera.position);
+  }, [currentSide, rotations, positions, camera]);
 
   useEffect(() => {
     const handleAdjustCubeRotation = (event) => {
-      adjustRotation(event.detail);
+      if (event.detail === 'next') {
+        changeSide(1);
+      } else if (event.detail === 'previous') {
+        changeSide(-1);
+      }
     };
-    
+
     window.addEventListener('adjustCubeRotation', handleAdjustCubeRotation);
     return () => {
       window.removeEventListener('adjustCubeRotation', handleAdjustCubeRotation);
     };
-  }, []);
+  }, [changeSide]);
 
-  useFrame(() => {
-    if (ref.current) {
-      ref.current.rotation.x += (targetRotation[0] - ref.current.rotation.x) * 0.1;
-      ref.current.rotation.y += (targetRotation[1] - ref.current.rotation.y) * 0.1;
-    }
-  });
+  useEffect(() => {
+    const checkIfInside = () => {
+      const cubeSize = 5;
+      const position = new Vector3();
+      camera.getWorldPosition(position);
+      const isInsideCube = (
+        position.x >= -cubeSize && position.x <= cubeSize &&
+        position.y >= -cubeSize && position.y <= cubeSize &&
+        position.z >= -cubeSize && position.z <= cubeSize
+      );
+      setIsInside(isInsideCube);
+    };
+
+    checkIfInside();
+  }, [camera]);
+
+  // Expose the camera globally for debugging
+  useEffect(() => {
+    window.camera = camera;
+  }, [camera]);
 
   const components = [
     Component1,
@@ -94,23 +143,14 @@ const Cube = () => {
     Component6,
   ];
 
-  const positions = [
-    [0, 0, 5],  // Front
-    [5, 0, 0],  // Right
-    [0, 0, -5], // Back
-    [-5, 0, 0], // Left
-    [0, 5, 0],  // Top
-    [0, -5, 0], // Bottom
-  ];
-
-  const rotations = [
-    [0, 0, 0],            // Front
-    [0, Math.PI / 2, 0],  // Right
-    [0, Math.PI, 0],      // Back
-    [0, -Math.PI / 2, 0], // Left
-    [-Math.PI / 2, 0, 0], // Top
-    [Math.PI / 2, 0, 0],  // Bottom
-  ];
+  const cubePositions = useMemo(() => [
+    new Vector3(0, 0, 5),  // Front
+    new Vector3(5, 0, 0),  // Right
+    new Vector3(0, 0, -5), // Back
+    new Vector3(-5, 0, 0), // Left
+    new Vector3(0, 5, 0),  // Top
+    new Vector3(0, -5, 0), // Bottom
+  ], []);
 
   return (
     <group
@@ -121,29 +161,18 @@ const Cube = () => {
       position={[0, 0, 0]}
     >
       {components.map((Component, index) => (
-        <mesh key={index} position={positions[index]} rotation={rotations[index]}>
-          <planeGeometry args={[10, 10]} />
-          <meshBasicMaterial color="#fff" side={DoubleSide} />
-          <Html transform>
-            <div className={`content-wrapper component${index + 1}`}>
-              <Component />
-            </div>
-          </Html>
-        </mesh>
+        <CubeFace
+          key={index}
+          position={cubePositions[index]}
+          rotation={rotations[index]}
+          Component={Component}
+          isInside={isInside}
+          currentSide={currentSide}
+          index={index}
+        />
       ))}
     </group>
   );
 };
 
-const Scene = () => {
-  return (
-    <Canvas camera={{ position: [0, 0, 15] }}>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Cube />
-      <OrbitControls />
-    </Canvas>
-  );
-};
-
-export default Scene;
+export default Cube;
