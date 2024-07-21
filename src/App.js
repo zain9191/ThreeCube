@@ -1,5 +1,5 @@
 import React from 'react';
-import Scene from './Scene';
+import Scene from './components/Scene';
 import './styles.css';
 
 const App = () => {

@@ -2,12 +2,13 @@ import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react'
 import { useThree } from '@react-three/fiber';
 import { Vector3, Euler } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import Component1 from './components/Component1';
-import Component2 from './components/Component2';
-import Component3 from './components/Component3';
-import Component4 from './components/Component4';
-import Component5 from './components/Component5';
-import Component6 from './components/Component6';
+import gsap from 'gsap';
+import Component1 from './Component1';
+import Component2 from './Component2';
+import Component3 from './Component3';
+import Component4 from './Component4';
+import Component5 from './Component5';
+import Component6 from './Component6';
 import CubeFace from './CubeFace';
 
 const Cube = () => {
@@ -54,8 +55,7 @@ const Cube = () => {
     new Vector3(0, 0, -15),                  // Component 4
     new Vector3(0, 0, -15),                  // Component 5
     new Vector3(0, 0, -15),                  // Component 6
-], []);
-
+  ], []);
 
   const handlePointerDown = useCallback((event) => {
     setIsDragging(true);
@@ -87,11 +87,31 @@ const Cube = () => {
     setTargetRotation(rotations[newSide]);
     setTargetPosition(positions[newSide]);
 
-    // Immediately adjust camera position and rotation for the new side
-    camera.position.copy(positions[newSide]);
-    camera.lookAt(ref.current.position);
+    // Animate camera position and rotation for the new side
+    gsap.to(camera.position, {
+      duration: 2, // Duration of the animation in seconds
+      x: positions[newSide].x,
+      y: positions[newSide].y,
+      z: positions[newSide].z,
+      onUpdate: () => {
+        camera.lookAt(ref.current.position);
+      }
+    });
+
     if (ref.current) {
-      ref.current.rotation.copy(rotations[newSide]);
+      gsap.to(ref.current.rotation, {
+        duration: 2, // Duration of the animation in seconds
+        x: rotations[newSide].x,
+        y: rotations[newSide].y,
+        z: rotations[newSide].z,
+        onUpdate: () => {
+          ref.current.rotation.setFromVector3(new Vector3(
+            rotations[newSide].x,
+            rotations[newSide].y,
+            rotations[newSide].z
+          ));
+        }
+      });
     }
 
     // Log the camera position
