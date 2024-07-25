@@ -1,4 +1,9 @@
 
+$button-radius: 10px;
+$border-radius: 25px;
+
+$cube-size: 150rem;
+
 // Light mode variables
 $color-primary-light: #f2f2f2;    // Primary color for light mode
 $color-secondary-light: #555555;  // Secondary color for light mode
@@ -19,3 +24,19 @@ $color-body-dark: #303d55;        // Body color for dark mode
 $font-size-large: 1.5rem;         // Large font size
 $font-size-medium: 1rem;          // Medium font size
 $transition-speed: 0.3s;          // Transition speed
+
+
+$face-color-light:#f2f2f2;
+
+
+
+
+.app-container.light {
+    background-color: white;
+    color: black;
+  }
+  
+  .app-container.dark {
+    background-color: black;
+    color: white;
+  }

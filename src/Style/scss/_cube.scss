@@ -1,0 +1,49 @@
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $cube-size;
+    height: $cube-size;
+    // font-size: 6rem;
+    text-align: center;
+    color: $color-primary-dark;
+    overflow: auto;
+    box-sizing: border-box;
+    transform: scale(1, 1);
+  }
+  
+  // .component1 { background-color: #ffdddd; }
+  .component2 { background-color: #ddffdd; }
+  .component3 { background-color: #ddddff; }
+  .component4 { background-color: #ffffdd; }
+  .component5 { background-color: #ddffff; }
+  .component6 { background-color: #ffddff; }
+  
+
+
+  // Assuming variables are defined somewhere
+.button, .button-previous, .button-next {
+  padding: 10px;
+  background-color: $color-primary-dark;
+  color: white;
+  border: none;
+  border-radius: $button-radius;
+  cursor: pointer;
+  position: absolute; // Added for correct positioning with top/right/left
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+
+  &:hover {
+    background-color: $color-body-dark;
+  }
+}
+
+.button-previous {
+  top: 50%;
+  left: 5%; // Uncomment if needed
+}
+
+.button-next {
+  top: 50%;
+  right: 0%;
+}

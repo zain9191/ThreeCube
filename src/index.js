@@ -1,12 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import App from './App';
-import './styles.css';
+import { LanguageProvider } from './Context/LanguageContext';
+import { ThemeProvider } from './Context/ThemeContext';
 
-const rootElement = document.getElementById('root');
-const root = ReactDOM.createRoot(rootElement);
+const container = document.getElementById('root');
+const root = createRoot(container);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <LanguageProvider>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </LanguageProvider>
   </React.StrictMode>
 );

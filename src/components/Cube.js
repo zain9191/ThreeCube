@@ -3,8 +3,8 @@ import { useThree } from '@react-three/fiber';
 import { Vector3, Euler } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import gsap from 'gsap';
-import Component1 from './Component1';
-import Component2 from './Component2';
+import SideOne from './sideOne';
+import SideTwo from './sideTwo';
 import Component3 from './Component3';
 import Component4 from './Component4';
 import Component5 from './Component5';
@@ -49,12 +49,12 @@ const Cube = () => {
   ], []);
 
   const positions = useMemo(() => [
-    new Vector3(0, 0, 15),                   // Component 1
-    new Vector3(0, 0, -15),                  // Component 2
-    new Vector3(0, 0, 15),                   // Component 3
-    new Vector3(0, 0, -15),                  // Component 4
-    new Vector3(0, 0, -15),                  // Component 5
-    new Vector3(0, 0, -15),                  // Component 6
+    new Vector3(0, 0, 80),                   // Component 1
+    new Vector3(0, 0, -80),                  // Component 2
+    new Vector3(0, 0, 80),                   // Component 3
+    new Vector3(0, 0, -80),                  // Component 4
+    new Vector3(0, 0, -80),                  // Component 5
+    new Vector3(0, 0, -80),                  // Component 6
   ], []);
 
   const handlePointerDown = useCallback((event) => {
@@ -87,6 +87,10 @@ const Cube = () => {
     setTargetRotation(rotations[newSide]);
     setTargetPosition(positions[newSide]);
 
+    // Debugging: Log initial and target positions
+    console.log('Initial Camera Position:', camera.position);
+    console.log('Target Position:', positions[newSide]);
+
     // Animate camera position and rotation for the new side
     gsap.to(camera.position, {
       duration: 2, // Duration of the animation in seconds
@@ -95,6 +99,10 @@ const Cube = () => {
       z: positions[newSide].z,
       onUpdate: () => {
         camera.lookAt(ref.current.position);
+      },
+      onComplete: () => {
+        // Debugging: Log final camera position
+        console.log('Final Camera Position:', camera.position);
       }
     });
 
@@ -113,9 +121,6 @@ const Cube = () => {
         }
       });
     }
-
-    // Log the camera position
-    console.log('Camera position:', camera.position);
   }, [currentSide, rotations, positions, camera]);
 
   useEffect(() => {
@@ -155,8 +160,8 @@ const Cube = () => {
   }, [camera]);
 
   const components = [
-    Component1,
-    Component2,
+    SideOne,
+    SideTwo,
     Component3,
     Component4,
     Component5,
@@ -164,12 +169,12 @@ const Cube = () => {
   ];
 
   const cubePositions = useMemo(() => [
-    new Vector3(0, 0, 5),  // Front
-    new Vector3(5, 0, 0),  // Right
-    new Vector3(0, 0, -5), // Back
-    new Vector3(-5, 0, 0), // Left
-    new Vector3(0, 5, 0),  // Top
-    new Vector3(0, -5, 0), // Bottom
+    new Vector3(0, 0, 30),  // Front
+    new Vector3(30, 0, 0),  // Right
+    new Vector3(0, 0, -30), // Back
+    new Vector3(-30, 0, 0), // Left
+    new Vector3(0, 30, 0),  // Top
+    new Vector3(0, -30, 0), // Bottom
   ], []);
 
   return (

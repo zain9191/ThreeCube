@@ -7,19 +7,14 @@ const Scene = () => {
   console.log('Rendering Scene component');
   
   return (
-    <Canvas camera={{ position: [0, 0, 15] }}>
-      {console.log('Canvas initialized with camera position: [0, 0, 15]')}
-      <ambientLight />
-      {console.log('Added ambient light')}
-      <pointLight position={[10, 10, 10]} />
-      {console.log('Added point light at position: [10, 10, 10]')}
+    <Canvas camera={{ position: [0, 0, 80] }}>
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={1} />
+      <pointLight position={[-10, -10, -10]} intensity={1} />
       <Cube />
-      {console.log('Added Cube component')}
       <DreiOrbitControls />
-      {console.log('Added OrbitControls from Drei')}
     </Canvas>
   );
 };
 
 export default Scene;
-

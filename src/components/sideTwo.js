@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Component2 = ({ className }) => {
+const Two = ({ className }) => {
   return (
     <div className={className}>
       <h1>Component 2</h1>
@@ -9,4 +9,4 @@ const Component2 = ({ className }) => {
   );
 };
 
-export default Component2;
+export default Two;

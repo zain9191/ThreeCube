@@ -1,0 +1,97 @@
+@import './variables';
+
+.sideOne {
+    background-color: $color-primary-light;
+    color: $color-secondary-light;
+    // border-left: 5px solid $color-tertiary-light;
+    // margin: 2% 0;
+    border-radius: $border-radius;
+    display: flex;
+    flex-direction: column;
+    // min-height: 90vh;
+    justify-content: center;
+    width: 125rem;
+    height: 125rem;
+
+    &__div1 {
+        // Add styles here if needed
+            // border: dotted red 5px;
+            width: 50%;
+            height: 100%;
+
+    }
+
+    &__div2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+            // border: dotted red 1px;
+            width: 50%;
+            height: 100%;
+            &>img{
+                height: 80%;
+                width: 80%;
+                object-fit: cover;
+            }
+
+
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        // margin-left: 5%;
+        height: 100%;
+
+
+        @media (max-width: 768px) {
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin-left: 0;
+            border: dotted red 5px;
+
+
+        }
+    }
+
+    &__h1 {
+        font-size: 15vw;
+        font-weight: 900;
+        font-family: 'Signika Negative', sans-serif;
+        margin-bottom: 2vw;
+        margin-top: 9vw;
+
+        @media (min-width: 768px) {
+            font-size: 10vw;
+            margin-top: 5vw;
+        }
+
+        &__dot {
+            color: $color-tertiary-light;
+        }
+    }
+
+    &__h2 {
+        font-size: 5vw;
+        letter-spacing: 2px;
+        padding-left: 10px;
+        margin: 0;
+
+        @media (min-width: 768px) {
+            font-size: 3vw;
+        }
+    }
+}
+
+.app-container.light {
+    background-color: $color-body-light;
+    color: $color-secondary-light;
+}
+
+.app-container.dark {
+    background-color: $color-body-dark;
+    color: $color-secondary-dark;
+}
