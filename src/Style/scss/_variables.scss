@@ -9,7 +9,7 @@ $color-primary-light: #f2f2f2;    // Primary color for light mode
 $color-secondary-light: #555555;  // Secondary color for light mode
 $color-tertiary-light: #6699cc;   // Tertiary color for light mode
 $color-hover-light: #88b4e7;      // Hover color for light mode
-$color-footer-light: #282c34;     // Footer color for light mode
+// $color-footer-light: #282c34;     // Footer color for light mode
 $color-body-light: #ffffff;       // Body color for light mode
 
 // Dark mode variables
@@ -17,16 +17,17 @@ $color-primary-dark: #0d1117;     // Primary color for dark mode
 $color-secondary-dark: #f0f6fc;   // Secondary color for dark mode
 $color-tertiary-dark: #58a6ff;    // Tertiary color for dark mode
 $color-hover-dark: #f0f6fc;       // Hover color for dark mode
-$color-footer-dark: #161b22;      // Footer color for dark mode
+// $color-footer-dark: #161b22;      // Footer color for dark mode
 $color-body-dark: #303d55;        // Body color for dark mode
 
 // Common variables
-$font-size-large: 1.5rem;         // Large font size
-$font-size-medium: 1rem;          // Medium font size
+$font-size-h1: 35rem;         // Large font h1
+$font-size-large: 4rem;         // Large font size
+$font-size-medium: 10rem;          // Medium font size
 $transition-speed: 0.3s;          // Transition speed
 
 
-$face-color-light:#f2f2f2;
+// $face-color-light:#f2f2f2;
 
 
 
@@ -37,6 +38,6 @@ $face-color-light:#f2f2f2;
   }
   
   .app-container.dark {
-    background-color: black;
+    // background-color: black;
     color: white;
   }

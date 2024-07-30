@@ -2,7 +2,6 @@ import React from 'react';
 import Scene from './components/Scene';
 import { useTheme, ThemeProvider } from './Context/ThemeContext';
 import { LanguageProvider } from './Context/LanguageContext';
-import Component1 from './components/sideOne';
 import './Style/css/main.css';
 
 const App = () => {
@@ -26,9 +25,10 @@ const App = () => {
       <div className="button-container">
         <button className="button-previous" onClick={handlePrevious}>Previous</button>
         <button className="button-next" onClick={handleNext}>Next</button>
-        <button className="button-theme-toggle" onClick={toggleTheme}>
-      {theme === 'light' ? 'Dark' : 'Light'}
-    </button>
+        <div className="custom-theme-toggle">
+          <input type="checkbox" id="custom-switch" className="custom-checkbox" onChange={toggleTheme} />
+          <label htmlFor="custom-switch" className="custom-label">Toggle</label>
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import { OrbitControls as DreiOrbitControls } from '@react-three/drei';
 import Cube from './Cube';
 
 const Scene = () => {
-  console.log('Rendering Scene component');
   
   return (
     <Canvas camera={{ position: [0, 0, 80] }}>

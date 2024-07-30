@@ -9,5 +9,15 @@ canvas {
     flex-direction: column;
     min-height: 100vh;
     min-width: 100vw;
+    font-family: 'Signika Negative', sans-serif;
+
   }
-  
+
+  .cubeFace{
+    border-radius: $border-radius;
+    display: flex;
+    width: 125rem;
+    height: 125rem;
+    // border: double red 3px;
+    
+  }

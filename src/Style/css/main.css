@@ -4,7 +4,6 @@
 }
 
 .app-container.dark {
-  background-color: black;
   color: white;
 }
 
@@ -19,96 +18,14 @@ canvas {
   flex-direction: column;
   min-height: 100vh;
   min-width: 100vw;
+  font-family: "Signika Negative", sans-serif;
 }
 
-.app-container.light {
-  background-color: white;
-  color: black;
-}
-
-.app-container.dark {
-  background-color: black;
-  color: white;
-}
-
-.sideOne {
-  background-color: #f2f2f2;
-  color: #555555;
+.cubeFace {
   border-radius: 25px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   width: 125rem;
   height: 125rem;
-}
-.sideOne__div1 {
-  width: 50%;
-  height: 100%;
-}
-.sideOne__div2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100%;
-}
-.sideOne__div2 > img {
-  height: 80%;
-  width: 80%;
-  object-fit: cover;
-}
-.sideOne__container {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
-@media (max-width: 768px) {
-  .sideOne__container {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-    margin-left: 0;
-    border: dotted red 5px;
-  }
-}
-.sideOne__h1 {
-  font-size: 15vw;
-  font-weight: 900;
-  font-family: "Signika Negative", sans-serif;
-  margin-bottom: 2vw;
-  margin-top: 9vw;
-}
-@media (min-width: 768px) {
-  .sideOne__h1 {
-    font-size: 10vw;
-    margin-top: 5vw;
-  }
-}
-.sideOne__h1__dot {
-  color: #6699cc;
-}
-.sideOne__h2 {
-  font-size: 5vw;
-  letter-spacing: 2px;
-  padding-left: 10px;
-  margin: 0;
-}
-@media (min-width: 768px) {
-  .sideOne__h2 {
-    font-size: 3vw;
-  }
-}
-
-.app-container.light {
-  background-color: #ffffff;
-  color: #555555;
-}
-
-.app-container.dark {
-  background-color: #303d55;
-  color: #f0f6fc;
 }
 
 .content-wrapper {
@@ -122,10 +39,6 @@ canvas {
   overflow: auto;
   box-sizing: border-box;
   transform: scale(1, 1);
-}
-
-.component2 {
-  background-color: #ddffdd;
 }
 
 .component3 {
@@ -167,6 +80,249 @@ canvas {
 .button-next {
   top: 50%;
   right: 0%;
+}
+
+.custom-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.custom-label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 25px;
+  height: 50px;
+  background: grey;
+  display: block;
+  border-radius: 25px;
+  position: fixed;
+  left: 95%;
+  bottom: 5%;
+}
+
+.custom-label:after {
+  content: "";
+  position: absolute;
+  left: 2.5px;
+  top: 2.5px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.custom-checkbox:checked + .custom-label {
+  background: #bada55;
+}
+
+.custom-checkbox:checked + .custom-label:after {
+  top: calc(100% - 2.5px);
+  transform: translateY(-100%);
+}
+
+.custom-label:active:after {
+  height: 25px;
+}
+
+.custom-theme-toggle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.app-container.light {
+  background-color: white;
+  color: black;
+}
+
+.app-container.dark {
+  color: white;
+}
+
+.sideOne {
+  background-color: #f2f2f2;
+  color: #555555;
+  flex-direction: column;
+  justify-content: center;
+}
+.sideOne__div1 {
+  width: 100%;
+  height: 100%;
+}
+.sideOne__div2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+.sideOne__div2 > img {
+  height: 80%;
+  width: 80%;
+  object-fit: cover;
+}
+.sideOne__container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+@media (max-width: 768px) {
+  .sideOne__container {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-left: 0;
+  }
+}
+.sideOne__h1 {
+  font-size: 35rem;
+  margin-bottom: 5rem;
+}
+.sideOne__h1__dot {
+  color: #6699cc;
+}
+.sideOne__p {
+  font-size: 8vw;
+  letter-spacing: 2px;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.app-container.light {
+  background-color: #ffffff;
+  color: #555555;
+}
+
+.app-container.dark {
+  background-color: #303d55;
+  color: #f0f6fc;
+}
+
+.app-container.light {
+  background-color: white;
+  color: black;
+}
+
+.app-container.dark {
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sideTwo {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  transition: background-color 0.3s;
+}
+.sideTwo-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sideTwo__h2 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 10rem;
+  color: #555555;
+  text-align: center;
+  text-decoration: underline #6699cc;
+  transition: color 0.3s;
+  margin-top: 50px;
+}
+.sideTwo__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 1rem;
+}
+.sideTwo__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #555555;
+  font-size: 4rem;
+  transition: color 0.3s;
+  margin-top: 1rem;
+}
+.sideTwo__img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 25px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 1rem;
+}
+.sideTwo__img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.sideTwo__animated-img {
+  opacity: 0; /* Initially hide the image */
+  animation: fadeIn 2s ease-in-out forwards;
+}
+.sideTwo__text {
+  text-align: center;
+  color: #555555;
+  font-size: 4rem;
+  transition: color 0.3s;
+  margin-top: 1rem;
+}
+.sideTwo__text p {
+  margin-bottom: 1rem;
+}
+.sideTwo__text p:last-of-type {
+  margin-bottom: 0;
+}
+.sideTwo__animated-text, .sideTwo__animated-text--delay, .sideTwo__animated-text--delay-more {
+  display: inline-block;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  opacity: 0; /* Initially hide the text */
+  animation: fadeIn 2s ease-in-out forwards;
+}
+.sideTwo__animated-img {
+  animation-delay: 0s; /* Image appears first */
+}
+.sideTwo__animated-text {
+  animation-delay: 2s; /* Text appears after the image */
+}
+.sideTwo__animated-text--delay {
+  animation-delay: 4s; /* Next text block */
+}
+.sideTwo__animated-text--delay-more {
+  animation-delay: 6s; /* Last text block */
+}
+
+@media (max-width: 768px) {
+  .sideTwo__img {
+    width: 100%;
+    max-width: 100%;
+  }
+  .sideTwo__text {
+    font-size: 10rem;
+  }
+  .sideTwo__animated-text,
+  .sideTwo__animated-text--delay,
+  .sideTwo__animated-text--delay-more {
+    font-size: 10rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

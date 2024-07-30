@@ -22,7 +22,7 @@ const Cube = () => {
   const [isInside, setIsInside] = useState(false);
 
   const handleWheel = useCallback((event) => {
-    console.log('Wheel event:', event);
+    // console.log('Wheel event:', event);
   }, []);
 
   useEffect(() => {
@@ -88,8 +88,8 @@ const Cube = () => {
     setTargetPosition(positions[newSide]);
 
     // Debugging: Log initial and target positions
-    console.log('Initial Camera Position:', camera.position);
-    console.log('Target Position:', positions[newSide]);
+    // console.log('Initial Camera Position:', camera.position);
+    // console.log('Target Position:', positions[newSide]);
 
     // Animate camera position and rotation for the new side
     gsap.to(camera.position, {
@@ -102,7 +102,7 @@ const Cube = () => {
       },
       onComplete: () => {
         // Debugging: Log final camera position
-        console.log('Final Camera Position:', camera.position);
+        // console.log('Final Camera Position:', camera.position);
       }
     });
 
