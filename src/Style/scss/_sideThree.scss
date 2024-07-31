@@ -1,0 +1,137 @@
+/* General container for the upper half of the cube face */
+.sidethree__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.sidethree__projects {
+  width: 90%;
+  margin: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  border-radius: 10px;
+
+
+}
+
+.project-a__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.project-a__img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+
+  // &:hover {
+  //   transform: scale(1.05);
+  // }
+}
+
+.project-a__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.project-a__h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.project-a__h4 {
+  font-size: 1em;
+  margin: 5px 0;
+}
+
+.project-a__description {
+  font-size: 0.9em;
+  margin: 5px 0;
+}
+
+.project-a__tools {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.project-a__tools--logos {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tool-logo {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+
+.project-a__links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.project-a__link {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $color-primary-light;
+  }
+
+  .gitLogo {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: white;
+  z-index: 10;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-image-container {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,93 @@
+import React, { useEffect, useRef } from "react";
+import ProjectCard from "../components/ProjectCard";
+
+import KanapHomeSmall from "../assets/Porojects/kanap/KanapHomeSmall.png";
+import KanapHome from "../assets/Porojects/kanap/KanapHome.png";
+import KanapHome1 from "../assets/Porojects/kanap/KanapHome1.png";
+import KanapHome2 from "../assets/Porojects/kanap/KanapHome2.png";
+import KanapHome3 from "../assets/Porojects/kanap/KanapHome3.png";
+import KanapHomeLarge from "../assets/Porojects/kanap/KanapHomeLarge.png";
+
+
+const projects = [
+  {
+    title: "Kanap",
+    description: "Kanap is an e-commerce website for selling customizable sofas. The project emphasizes JavaScript for dynamic content and user interaction, along with a robust backend for managing product information.",
+    subdescription: "E-commerce Website",
+    imageUrlSmall: KanapHomeSmall,
+    imageUrlLarge: KanapHomeLarge,
+    link: "https://github.com/zain9191/P5-Dev-Web-Kanap",
+    tools: ["JavaScript", "CSS", "HTML", "Node"],
+    images: [KanapHome, KanapHome1, KanapHome2, KanapHome3],
+  },
+];
+
+const SideThree = () => {
+  const introRef = useRef(null);
+  const imgRef = useRef(null);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (imgRef.current) {
+              imgRef.current.classList.add("sidethree__img--animated");
+            }
+            if (textRef.current) {
+              textRef.current.classList.add("sidethree-text--animated");
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const currentIntroRef = introRef.current;
+
+    if (currentIntroRef) {
+      observer.observe(currentIntroRef);
+    }
+
+    // Clean up observer on component unmount
+    return () => {
+      if (currentIntroRef) {
+        observer.unobserve(currentIntroRef);
+      }
+    };
+  }, []);
+
+  return (
+    // <section id="IDabout">
+      // <div className="sidethree__container">
+        // <div className="sidethree-content">
+          // <div className="sidethree-content__div__2">
+            <div className="sidethree__grid">
+              {projects.map((project, index) => (
+                <div
+                  className={`sidethree__projects ${index % 2 === 0 ? "sidethree__img-left" : "sidethree__img-right"}`}
+                  key={index}
+                >
+                  <ProjectCard
+                    title={project.title}
+                    description={project.description}
+                    subdescription={project.subdescription}
+                    imageUrlSmall={project.imageUrlSmall}
+                    imageUrlLarge={project.imageUrlLarge}
+                    link={project.link}
+                    tools={project.tools}
+                    images={project.images}
+                  />
+                </div>
+              ))}
+            </div>
+          // </div>
+        // </div>
+      // </div>
+    // </section>
+  );
+};
+
+export default SideThree;

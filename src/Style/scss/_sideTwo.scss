@@ -16,7 +16,7 @@
     height: 100%;
     // padding: 2rem;
     // margin: auto;
-    display: flex;
+    // display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -32,7 +32,7 @@
     text-decoration: underline $color-tertiary-light;
     transition: color $transition-speed;
     // margin-bottom: 50px;
-    margin-top: 50px;
+    margin-top: 20px;
   }
 
   &__content {
@@ -91,7 +91,7 @@
   &__animated-text--delay,
   &__animated-text--delay-more {
     display: inline-block;
-    margin: 0 auto;
+    // margin: 0 auto;
     letter-spacing: .15em;
     opacity: 0; /* Initially hide the text */
     animation: fadeIn 2s ease-in-out forwards;

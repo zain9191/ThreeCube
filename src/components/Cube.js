@@ -5,7 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import gsap from 'gsap';
 import SideOne from './sideOne';
 import SideTwo from './sideTwo';
-import Component3 from './Component3';
+import SideThree from './sideThree';
 import Component4 from './Component4';
 import Component5 from './Component5';
 import Component6 from './Component6';
@@ -162,7 +162,7 @@ const Cube = () => {
   const components = [
     SideOne,
     SideTwo,
-    Component3,
+    SideThree,
     Component4,
     Component5,
     Component6,
