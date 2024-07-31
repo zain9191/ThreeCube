@@ -20,9 +20,25 @@ const Cube = () => {
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 0, 15));
   const [currentSide, setCurrentSide] = useState(0);
   const [isInside, setIsInside] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); 
+
+
+  // Handle visibility events
+useEffect(() => {
+  const handleShowCube = () => setIsVisible(true);
+  const handleHideCube = () => setIsVisible(false);
+
+  window.addEventListener('showCube', handleShowCube);
+  window.addEventListener('hideCube', handleHideCube);
+
+  return () => {
+    window.removeEventListener('showCube', handleShowCube);
+    window.removeEventListener('hideCube', handleHideCube);
+  };
+}, []);
+
 
   const handleWheel = useCallback((event) => {
-    // console.log('Wheel event:', event);
   }, []);
 
   useEffect(() => {
@@ -49,12 +65,12 @@ const Cube = () => {
   ], []);
 
   const positions = useMemo(() => [
-    new Vector3(0, 0, 80),                   // Component 1
-    new Vector3(0, 0, -80),                  // Component 2
-    new Vector3(0, 0, 80),                   // Component 3
-    new Vector3(0, 0, -80),                  // Component 4
-    new Vector3(0, 0, -80),                  // Component 5
-    new Vector3(0, 0, -80),                  // Component 6
+    new Vector3(0, 0, 80),                  
+    new Vector3(0, 0, -80),                 
+    new Vector3(0, 0, 80),                   
+    new Vector3(0, 0, -80),                  
+    new Vector3(0, 0, -80),            
+    new Vector3(0, 0, -80),               
   ], []);
 
   const handlePointerDown = useCallback((event) => {
@@ -87,13 +103,9 @@ const Cube = () => {
     setTargetRotation(rotations[newSide]);
     setTargetPosition(positions[newSide]);
 
-    // Debugging: Log initial and target positions
-    // console.log('Initial Camera Position:', camera.position);
-    // console.log('Target Position:', positions[newSide]);
 
-    // Animate camera position and rotation for the new side
     gsap.to(camera.position, {
-      duration: 2, // Duration of the animation in seconds
+      duration: 2, //  animation in seconds
       x: positions[newSide].x,
       y: positions[newSide].y,
       z: positions[newSide].z,
@@ -101,14 +113,12 @@ const Cube = () => {
         camera.lookAt(ref.current.position);
       },
       onComplete: () => {
-        // Debugging: Log final camera position
-        // console.log('Final Camera Position:', camera.position);
       }
     });
 
     if (ref.current) {
       gsap.to(ref.current.rotation, {
-        duration: 2, // Duration of the animation in seconds
+        duration: 2, //  animation in seconds
         x: rotations[newSide].x,
         y: rotations[newSide].y,
         z: rotations[newSide].z,

@@ -14,7 +14,7 @@
 
 // .component1 { background-color: #ffdddd; }
 // .component2 { background-color: #ddffdd; }
-.component3 { background-color: #ddddff; }
+// .component3 { background-color: #ddddff; }
 .component4 { background-color: #ffffdd; }
 .component5 { background-color: #ddffff; }
 .component6 { background-color: #ffddff; }
@@ -46,4 +46,8 @@ left: 5%; // Uncomment if needed
 .button-next {
 top: 50%;
 right: 0%;
+}
+
+.hidden-cube {
+  display: none;
 }

@@ -1,3 +1,4 @@
+// ProjectCard.js
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { Carousel } from "react-responsive-carousel";
@@ -57,8 +58,12 @@ const ProjectCard = ({
     const html = document.documentElement;
     if (modalIsOpen) {
       html.classList.add("no-scroll");
+      const hideCubeEvent = new CustomEvent('hideCube');
+      window.dispatchEvent(hideCubeEvent);
     } else {
       html.classList.remove("no-scroll");
+      const showCubeEvent = new CustomEvent('showCube');
+      window.dispatchEvent(showCubeEvent);
     }
     return () => {
       html.classList.remove("no-scroll");
@@ -67,12 +72,10 @@ const ProjectCard = ({
 
   const openModal = () => {
     setModalIsOpen(true);
-    document.querySelector("header").classList.add("hidden");
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
-    document.querySelector("header").classList.remove("hidden");
   };
 
   return (
