@@ -51,3 +51,49 @@ right: 0%;
 .hidden-cube {
   display: none;
 }
+
+
+
+.modal-container {
+  z-index: 1000;
+}
+
+.hidden-cube {
+  display: none;
+}
+
+.carousel-container {
+  z-index: 1000; /* Ensure the carousel container is on top */
+}
+
+.carousel-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent; /* Ensure no background color is applied */
+}
+
+.carousel-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain; /* Ensure the image maintains its aspect ratio */
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+
+/* Ensure the modal has a high z-index */
+.modal-container {
+  z-index: 1000;
+}
+
+/* The cube should be hidden when the class is applied */
+.hidden-cube {
+  display: none !important;
+}
+
+.carousel-container {
+  z-index: 1001; /* Ensure the carousel container is on top of the modal */
+}

@@ -77,7 +77,10 @@ const SideThree = () => {
   }, []);
 
   return (
-    <div className="sidethreeMain">
+    <div className="cubeFace">
+
+
+    <div className=" sidethreeMain">
       {projects.map((project, index) => (
         <div
           className={`sidethree__projects ${index % 2 === 0 ? "sidethree__img-left" : "sidethree__img-right"}`}
@@ -95,6 +98,7 @@ const SideThree = () => {
           />
         </div>
       ))}
+    </div>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import gsap from 'gsap';
 import SideOne from './sideOne';
 import SideTwo from './sideTwo';
 import SideThree from './sideThree';
-import Component4 from './Component4';
+import SideFour from './SideFour';
 import Component5 from './Component5';
 import Component6 from './Component6';
 import CubeFace from './CubeFace';
@@ -22,23 +22,31 @@ const Cube = () => {
   const [isInside, setIsInside] = useState(false);
   const [isVisible, setIsVisible] = useState(true); 
 
-
   // Handle visibility events
-useEffect(() => {
-  const handleShowCube = () => setIsVisible(true);
-  const handleHideCube = () => setIsVisible(false);
-
-  window.addEventListener('showCube', handleShowCube);
-  window.addEventListener('hideCube', handleHideCube);
-
-  return () => {
-    window.removeEventListener('showCube', handleShowCube);
-    window.removeEventListener('hideCube', handleHideCube);
-  };
-}, []);
-
+  useEffect(() => {
+    const handleShowCube = () => {
+      console.debug('Cube shown');
+      setIsVisible(true);
+    };
+  
+    const handleHideCube = () => {
+      console.debug('Cube hidden');
+      setIsVisible(false);
+    };
+  
+    window.addEventListener('showCube', handleShowCube);
+    window.addEventListener('hideCube', handleHideCube);
+  
+    return () => {
+      window.removeEventListener('showCube', handleShowCube);
+      window.removeEventListener('hideCube', handleHideCube);
+    };
+  }, []);
+  
+  
 
   const handleWheel = useCallback((event) => {
+    event.preventDefault();
   }, []);
 
   useEffect(() => {
@@ -103,6 +111,7 @@ useEffect(() => {
     setTargetRotation(rotations[newSide]);
     setTargetPosition(positions[newSide]);
 
+    console.debug(`Changing to side: ${newSide}`);
 
     gsap.to(camera.position, {
       duration: 2, //  animation in seconds
@@ -113,6 +122,7 @@ useEffect(() => {
         camera.lookAt(ref.current.position);
       },
       onComplete: () => {
+        console.debug('Animation complete');
       }
     });
 
@@ -136,8 +146,10 @@ useEffect(() => {
   useEffect(() => {
     const handleAdjustCubeRotation = (event) => {
       if (event.detail === 'next') {
+        console.debug('Rotating to the next side');
         changeSide(1);
       } else if (event.detail === 'previous') {
+        console.debug('Rotating to the previous side');
         changeSide(-1);
       }
     };
@@ -173,7 +185,7 @@ useEffect(() => {
     SideOne,
     SideTwo,
     SideThree,
-    Component4,
+    SideFour,
     Component5,
     Component6,
   ];

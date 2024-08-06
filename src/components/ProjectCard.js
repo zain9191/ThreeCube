@@ -1,12 +1,11 @@
-// ProjectCard.js
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import githubLogo from "../assets/Logos/githubLogo.png";
 import toolLogos from "./toolLogos";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Ensure this import is correct
 
 const modalStyles = {
   content: {
@@ -58,10 +57,12 @@ const ProjectCard = ({
     const html = document.documentElement;
     if (modalIsOpen) {
       html.classList.add("no-scroll");
+      console.log("Dispatching hideCube event");
       const hideCubeEvent = new CustomEvent('hideCube');
       window.dispatchEvent(hideCubeEvent);
     } else {
       html.classList.remove("no-scroll");
+      console.log("Dispatching showCube event");
       const showCubeEvent = new CustomEvent('showCube');
       window.dispatchEvent(showCubeEvent);
     }
@@ -71,10 +72,12 @@ const ProjectCard = ({
   }, [modalIsOpen]);
 
   const openModal = () => {
+    console.log("Opening modal");
     setModalIsOpen(true);
   };
 
   const closeModal = () => {
+    console.log("Closing modal");
     setModalIsOpen(false);
   };
 
