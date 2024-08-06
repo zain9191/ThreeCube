@@ -6,9 +6,9 @@ import gsap from 'gsap';
 import SideOne from './sideOne';
 import SideTwo from './sideTwo';
 import SideThree from './sideThree';
-import SideFour from './SideFour';
-import Component5 from './Component5';
-import Component6 from './Component6';
+import SideFour from './sideFour';
+import SideFive from './SideFive';
+import sideSix from './sideSix';
 import CubeFace from './CubeFace';
 
 const Cube = () => {
@@ -186,8 +186,8 @@ const Cube = () => {
     SideTwo,
     SideThree,
     SideFour,
-    Component5,
-    Component6,
+    SideFive,
+    sideSix,
   ];
 
   const cubePositions = useMemo(() => [

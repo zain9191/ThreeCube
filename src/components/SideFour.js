@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "./ProjectCard";
 
 import PantherHomeSmall from "../assets/Porojects/Panther/pantherHomeSmall.png";
 import PantherHome from "../assets/Porojects/Panther/pantherHome.png";
@@ -18,10 +18,10 @@ import Kasa5 from "../assets/Porojects/kasa/Kasa-5.png";
 const projects = [
   {
     title: "Kasa",
-    description: "Kasa project is a rental platform for properties, allowing users to browse and view detailed information about various rental options. Built with React, the application features a responsive design and smooth user interactions, including a carousel for property images, a detailed property description, and integrated tools for enhanced user experience.",
+    description: "Kasa is a platform for browsing rental properties, featuring a responsive design and smooth interactions. Built with React, it includes a carousel for images and detailed property information to enhance user experience.",
     subdescription: "Real Estate Rental Platform",
     imageUrlSmall: KasaHomeSmall,
-    imageUrlLarge: KasaHome,
+    imageUrlLarge: KasaHomeSmall,
     link: "https://github.com/zain9191/P7-Kasa",
     tools: ["JavaScript", "CSS", "HTML", "React", "Node"],
     images: [KasaHome, Kasa1, Kasa2, Kasa3, Kasa4, Kasa5],
@@ -31,7 +31,7 @@ const projects = [
     description: "La Panthère is a project focused on improving the SEO of an existing website. The project includes optimizing content, improving page load speed, and ensuring a mobile-friendly design.",
     subdescription: "SEO Optimization Project",
     imageUrlSmall: PantherHomeSmall,
-    imageUrlLarge: PantherHome,
+    imageUrlLarge: PantherHomeSmall,
     link: "https://github.com/zain9191/La-Panthere",
     tools: ["CSS", "HTML"],
     images: [PantherHome, PantherHome1, PantherHome2, PantherHome3],

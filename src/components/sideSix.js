@@ -1,0 +1,41 @@
+import React from "react";
+import { useForm, ValidationError } from "@formspree/react";
+
+const SideSix = () => {
+  const [state, handleSubmit] = useForm("xkndyvnb");
+
+  if (state.succeeded) {
+    return <p>Thank you for contacting us!</p>;
+  }
+
+  return (
+    <section id="contact">
+      <div className="container">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out with any questions or comments.</p>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input type="text" id="name" name="name" required />
+            <ValidationError prefix="Name" field="name" errors={state.errors} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" name="email" required />
+            <ValidationError prefix="Email" field="email" errors={state.errors} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <ValidationError prefix="Message" field="message" errors={state.errors} />
+          </div>
+          <button type="submit" disabled={state.submitting}>
+            Send
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+export default SideSix;

@@ -1,0 +1,515 @@
+/* SideThreeAndFour.css */
+
+.sidethreeMain, .sidefourMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #f2f2f2;
+  border-radius: 25px;
+}
+
+.sideOne {
+  background-color: #f2f2f2;
+  color: #555555;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sideOne__div1 {
+  width: 100%;
+  height: 100%;
+}
+
+.sideOne__div2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.sideOne__div2 > img {
+  height: 80%;
+  width: 80%;
+  object-fit: cover;
+}
+
+.sideOne__container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .sideOne__container {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-left: 0;
+  }
+}
+
+.sideOne__h1 {
+  font-size: 35rem;
+  margin-bottom: 5rem;
+}
+
+.sideOne__h1__dot {
+  color: #6699cc;
+}
+
+.sideOne__p {
+  font-size: 8vw;
+  letter-spacing: 2px;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.sideTwo {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  transition: background-color 0.3s;
+}
+
+.sideTwo-container {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sideTwo__h2 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 9rem;
+  color: #555555;
+  text-align: center;
+  text-decoration: underline #6699cc;
+  transition: color 0.3s;
+  margin-top: 20px;
+}
+
+.sideTwo__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 1rem;
+}
+
+.sideTwo__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #555555;
+  font-size: 4rem;
+  transition: color 0.3s;
+  margin-top: 1rem;
+}
+
+.sideTwo__img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 25px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 1rem;
+}
+
+.sideTwo__img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.sideTwo__animated-img {
+  opacity: 0; /* Initially hide the image */
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.sideTwo__text {
+  text-align: center;
+  color: #555555;
+  font-size: 4rem;
+  transition: color 0.3s;
+  margin-top: 1rem;
+}
+
+.sideTwo__text p {
+  margin-bottom: 1rem;
+}
+
+.sideTwo__text p:last-of-type {
+  margin-bottom: 0;
+}
+
+.sideTwo__animated-text,
+.sideTwo__animated-text--delay,
+.sideTwo__animated-text--delay-more {
+  display: inline-block;
+  letter-spacing: 0.15em;
+  opacity: 0; /* Initially hide the text */
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.sideTwo__animated-img {
+  animation-delay: 0s; /* Image appears first */
+}
+
+.sideTwo__animated-text {
+  animation-delay: 2s; /* Text appears after the image */
+}
+
+.sideTwo__animated-text--delay {
+  animation-delay: 4s; /* Next text block */
+}
+
+.sideTwo__animated-text--delay-more {
+  animation-delay: 6s; /* Last text block */
+}
+
+@media (max-width: 768px) {
+  .sideTwo__img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sideTwo__text {
+    font-size: 9rem;
+  }
+
+  .sideTwo__animated-text,
+  .sideTwo__animated-text--delay,
+  .sideTwo__animated-text--delay-more {
+    font-size: 9rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.button,
+.button-previous,
+.button-next {
+  padding: 10px;
+  background-color: #0d1117;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+}
+
+.button:hover,
+.button-previous:hover,
+.button-next:hover {
+  background-color: #303d55;
+}
+
+.button-previous {
+  top: 50%;
+  left: 5%;
+}
+
+.button-next {
+  top: 50%;
+  right: 0%;
+}
+
+.hidden-cube {
+  display: none;
+}
+
+.modal-container {
+  z-index: 1000;
+}
+
+.hidden-cube {
+  display: none;
+}
+
+.carousel-container {
+  z-index: 1000; /* Ensure the carousel container is on top */
+}
+
+.carousel-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent; /* Ensure no background color is applied */
+}
+
+.carousel-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain; /* Ensure the image maintains its aspect ratio */
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Ensure the modal has a high z-index */
+.modal-container {
+  z-index: 1000;
+}
+
+/* The cube should be hidden when the class is applied */
+.hidden-cube {
+  display: none !important;
+}
+
+.carousel-container {
+  z-index: 1001; /* Ensure the carousel container is on top of the modal */
+}
+
+.custom-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.custom-label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 25px;
+  height: 50px;
+  background: grey;
+  display: block;
+  border-radius: 25px;
+  position: fixed;
+  left: 95%;
+  bottom: 5%;
+}
+
+.custom-label:after {
+  content: "";
+  position: absolute;
+  left: 2.5px;
+  top: 2.5px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.custom-checkbox:checked + .custom-label {
+  background: #bada55;
+}
+
+.custom-checkbox:checked + .custom-label:after {
+  top: calc(100% - 2.5px);
+  transform: translateY(-100%);
+}
+
+.custom-label:active:after {
+  height: 25px;
+}
+
+.custom-theme-toggle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.app-container.light {
+  background-color: #ffffff;
+  color: #555555;
+}
+
+.app-container.dark {
+  background-color: #303d55;
+  color: #f0f6fc;
+}
+
+.app-container.light {
+  background-color: white;
+  color: black;
+}
+
+.app-container.dark {
+  color: white;
+}
+
+.app-container.light {
+  background-color: white;
+  color: black;
+}
+
+.app-container.dark {
+  color: white;
+}
+
+.canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vw;
+  font-family: "Signika Negative", sans-serif;
+}
+
+.cubeFace {
+  border-radius: 25px;
+  display: flex;
+  width: 125rem;
+  height: 125rem;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150rem;
+  height: 150rem;
+  text-align: center;
+  color: #0d1117;
+  overflow: auto;
+  box-sizing: border-box;
+  transform: scale(1, 1);
+}
+
+
+
+// .component6 {
+//   background-color: #ffddff;
+// }
+
+.button,
+.button-previous,
+.button-next {
+  padding: 10px;
+  background-color: #0d1117;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+}
+
+.button:hover,
+.button-previous:hover,
+.button-next:hover {
+  background-color: #303d55;
+}
+
+.button-previous {
+  top: 50%;
+  left: 5%;
+}
+
+.button-next {
+  top: 50%;
+  right: 0%;
+}
+
+.hidden-cube {
+  display: none;
+}
+
+.modal-container {
+  z-index: 1000;
+}
+
+.hidden-cube {
+  display: none;
+}
+
+.carousel-container {
+  z-index: 1000; /* Ensure the carousel container is on top */
+}
+
+.carousel-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent; /* Ensure no background color is applied */
+}
+
+.carousel-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain; /* Ensure the image maintains its aspect ratio */
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.custom-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.custom-label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 25px;
+  height: 50px;
+  background: grey;
+  display: block;
+  border-radius: 25px;
+  position: fixed;
+  left: 95%;
+  bottom: 5%;
+}
+
+.custom-label:after {
+  content: "";
+  position: absolute;
+  left: 2.5px;
+  top: 2.5px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.custom-checkbox:checked + .custom-label {
+  background: #bada55;
+}
+
+.custom-checkbox:checked + .custom-label:after {
+  top: calc(100% - 2.5px);
+  transform: translateY(-100%);
+}
+
+.custom-label:active:after {
+  height: 25px;
+}
+
+.custom-theme-toggle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
