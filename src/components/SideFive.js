@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const SideFive = () => {
   const logoData = [
-    // { name: "HTML", imageUrl: require("../assets/Logos/HtmlLogo.png") },
-    // { name: "CSS 3", imageUrl: require("../assets/Logos/cssLogo.png") },
     { name: "JavaScript", imageUrl: require("../assets/Logos/javaScriptLogo.png") },
     { name: "TypeScript", imageUrl: require("../assets/Logos/typeScriptLogo.png") },
     { name: "Python", imageUrl: require("../assets/Logos/python.png") },
@@ -21,11 +19,42 @@ const SideFive = () => {
     { name: "Rest", imageUrl: require("../assets/Logos/RestLogo.png") },
     { name: "JSON", imageUrl: require("../assets/Logos/JsonLogo.png") },
   ];
-  
+
+  const logoRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("logo-animated");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    logoRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    // Clean up observer on component unmount
+    return () => {
+      logoRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
+
   return (
-    <div className="grid-container">
+    <div className="grid-container cubeFace">
       {logoData.map((logo, index) => (
-        <div className="grid-item" key={index}>
+        <div
+          className="grid-item"
+          key={index}
+          ref={(el) => (logoRefs.current[index] = el)}
+        >
           <img src={logo.imageUrl} alt={logo.name} className="logo-image" />
           <p className="logo-name">{logo.name}</p>
         </div>

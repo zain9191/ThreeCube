@@ -1,3 +1,5 @@
+// Cube.js
+
 import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { useThree } from '@react-three/fiber';
 import { Vector3, Euler } from 'three';
@@ -92,6 +94,7 @@ const Cube = () => {
     event.target.releasePointerCapture(event.pointerId);
   }, []);
 
+  // Here is where the new handlePointerMove function is integrated
   const handlePointerMove = useCallback((event) => {
     if (isDragging) {
       const deltaX = ((event.clientX - initialMousePosition.current[0]) / gl.domElement.clientWidth) * 2 * Math.PI;
@@ -118,6 +121,7 @@ const Cube = () => {
       x: positions[newSide].x,
       y: positions[newSide].y,
       z: positions[newSide].z,
+      ease: 'power2.out',
       onUpdate: () => {
         camera.lookAt(ref.current.position);
       },
@@ -146,10 +150,8 @@ const Cube = () => {
   useEffect(() => {
     const handleAdjustCubeRotation = (event) => {
       if (event.detail === 'next') {
-        console.debug('Rotating to the next side');
         changeSide(1);
       } else if (event.detail === 'previous') {
-        console.debug('Rotating to the previous side');
         changeSide(-1);
       }
     };
@@ -204,7 +206,7 @@ const Cube = () => {
       ref={ref}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
-      onPointerMove={handlePointerMove}
+      onPointerMove={handlePointerMove} // Attach the event handler here
       position={[0, 0, 0]}
     >
       {components.map((Component, index) => (

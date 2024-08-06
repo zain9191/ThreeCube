@@ -19,7 +19,8 @@ import P6HomeLarge from "../assets/Porojects/hotTakes/P6Home-large.png";
 const projects = [
   {
     title: "Kanap",
-    description: "Kanap is an e-commerce website for selling customizable sofas. The project emphasizes JavaScript for dynamic content and user interaction, along with a robust backend for managing product information.",
+    description:
+      "Kanap is an e-commerce website for selling customizable sofas. The project emphasizes JavaScript for dynamic content and user interaction, along with a robust backend for managing product information.",
     subdescription: "E-commerce Website",
     imageUrlSmall: KanapHomeSmall,
     imageUrlLarge: KanapHomeLarge,
@@ -29,8 +30,9 @@ const projects = [
   },
   {
     title: "HotTakes",
-    description: 'HotTakes is a secure API for a gastronomic review application. Developed with Angular and Express, it includes user authentication, secure data handling, and responsive front-end features.',
-    subdescription: 'Secure API for Gastronomic Reviews',
+    description:
+      "HotTakes is a secure API for a gastronomic review application. Developed with Angular and Express, it includes user authentication, secure data handling, and responsive front-end features.",
+    subdescription: "Secure API for Gastronomic Reviews",
     imageUrlSmall: P6HomeSmall,
     imageUrlLarge: P6HomeLarge,
     link: "https://github.com/zain9191/Web-Developer-P6",
@@ -40,21 +42,14 @@ const projects = [
 ];
 
 const SideThree = () => {
-  const introRef = useRef(null);
-  const imgRef = useRef(null);
-  const textRef = useRef(null);
+  const projectRefs = useRef([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            if (imgRef.current) {
-              imgRef.current.classList.add("sidethree__img--animated");
-            }
-            if (textRef.current) {
-              textRef.current.classList.add("sidethree-text--animated");
-            }
+            entry.target.classList.add("sidethree__projects--animated");
             observer.unobserve(entry.target);
           }
         });
@@ -62,43 +57,42 @@ const SideThree = () => {
       { threshold: 0.5 }
     );
 
-    const currentIntroRef = introRef.current;
-
-    if (currentIntroRef) {
-      observer.observe(currentIntroRef);
-    }
+    projectRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
 
     // Clean up observer on component unmount
     return () => {
-      if (currentIntroRef) {
-        observer.unobserve(currentIntroRef);
-      }
+      projectRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
     };
   }, []);
 
   return (
     <div className="cubeFace">
-
-
-    <div className=" sidethreeMain">
-      {projects.map((project, index) => (
-        <div
-          className={`sidethree__projects ${index % 2 === 0 ? "sidethree__img-left" : "sidethree__img-right"}`}
-          key={index}
-        >
-          <ProjectCard
-            title={project.title}
-            description={project.description}
-            subdescription={project.subdescription}
-            imageUrlSmall={project.imageUrlSmall}
-            imageUrlLarge={project.imageUrlLarge}
-            link={project.link}
-            tools={project.tools}
-            images={project.images}
-          />
-        </div>
-      ))}
-    </div>
+      <div className="sidethreeMain">
+        {projects.map((project, index) => (
+          <div
+            ref={(el) => (projectRefs.current[index] = el)}
+            className={`sidethree__projects ${
+              index % 2 === 0 ? "sidethree__img-left" : "sidethree__img-right"
+            }`}
+            key={index}
+          >
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              subdescription={project.subdescription}
+              imageUrlSmall={project.imageUrlSmall}
+              imageUrlLarge={project.imageUrlLarge}
+              link={project.link}
+              tools={project.tools}
+              images={project.images}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

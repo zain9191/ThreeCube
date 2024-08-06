@@ -378,16 +378,16 @@
 .cubeFace {
   border-radius: 25px;
   display: flex;
-  width: 125rem;
-  height: 125rem;
+  width: $cube-size;
+  height: $cube-size;
 }
 
 .content-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 150rem;
-  height: 150rem;
+  // width: 150rem;
+  // height: 150rem;
   text-align: center;
   color: #0d1117;
   overflow: auto;

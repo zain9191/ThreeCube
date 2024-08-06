@@ -12,16 +12,9 @@
   transform: scale(1, 1);
 }
 
-// .component1 { background-color: #ffdddd; }
-// .component2 { background-color: #ddffdd; }
-// .component3 { background-color: #ddddff; }
-// .component4 { background-color: #ffffdd; }
-// .component5 { background-color: #ddffff; }
-.component6 { background-color: #ffddff; }
 
 
 
-// Assuming variables are defined somewhere
 .button, .button-previous, .button-next {
 padding: 10px;
 background-color: $color-primary-dark;
@@ -29,7 +22,7 @@ color: white;
 border: none;
 border-radius: $button-radius;
 cursor: pointer;
-position: absolute; // Added for correct positioning with top/right/left
+position: absolute; 
 transform: translate(-50%, -50%);
 z-index: 10001;
 
@@ -40,7 +33,7 @@ z-index: 10001;
 
 .button-previous {
 top: 50%;
-left: 5%; // Uncomment if needed
+left: 5%; 
 }
 
 .button-next {
@@ -63,20 +56,20 @@ right: 0%;
 }
 
 .carousel-container {
-  z-index: 1000; /* Ensure the carousel container is on top */
+  z-index: 1000; 
 }
 
 .carousel-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent; /* Ensure no background color is applied */
+  background: transparent; 
 }
 
 .carousel-image {
   max-width: 100%;
   max-height: 80vh;
-  object-fit: contain; /* Ensure the image maintains its aspect ratio */
+  object-fit: contain; 
 }
 
 .no-scroll {
@@ -84,16 +77,15 @@ right: 0%;
 }
 
 
-/* Ensure the modal has a high z-index */
+
 .modal-container {
   z-index: 1000;
 }
 
-/* The cube should be hidden when the class is applied */
 .hidden-cube {
   display: none !important;
 }
 
 .carousel-container {
-  z-index: 1001; /* Ensure the carousel container is on top of the modal */
+  z-index: 1001; 
 }

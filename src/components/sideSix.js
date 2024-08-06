@@ -9,7 +9,7 @@ const SideSix = () => {
   }
 
   return (
-    <section id="contact">
+    <section id="contact" className="cubeFace contactMain">
       <div className="container">
         <h2>Contact Me</h2>
         <p>Feel free to reach out with any questions or comments.</p>
