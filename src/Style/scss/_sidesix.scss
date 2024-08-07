@@ -18,7 +18,13 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      &__h2{
+        text-decoration: underline $color-tertiary-light;
+        text-underline-offset: 30px;
+        transition: color $transition-speed;   
+         }
     }
+
   
     form {
       margin-top: 2%;
@@ -68,5 +74,39 @@
         background-color: darken($color-tertiary-light, 10%);
       }
     }
+  }
+
+
+
+  .contact-footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .contact-footer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .contact-footer li {
+    margin: 0 20px;
+  }
+  
+  .contact-footer a   {
+    transition: transform 0.2s;
+    height: 250px;
+    width: 250px;
+  }
+  
+  .contact-footer img {
+    height: 230px;
+    width: 230px;
+    // border: dotted red 6px;
+  }
+  
+  .contact-footer img:hover {
+    transform: scale(1.05);
   }
   

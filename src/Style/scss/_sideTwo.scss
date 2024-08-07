@@ -30,6 +30,8 @@
     color: $color-secondary-light;
     text-align: center;
     text-decoration: underline $color-tertiary-light;
+    text-underline-offset: 30px;
+
     transition: color $transition-speed;
     // margin-bottom: 50px;
     margin: 20px 0px 80px 20px;
@@ -80,9 +82,9 @@
     margin-top: 1rem;
 
     p {
-      margin-bottom: 1rem;
+      // margin-bottom: 1rem;s
       &:last-of-type {
-        margin-bottom: 0;
+        // margin-bottom: 0;
       }
     }
   }

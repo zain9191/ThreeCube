@@ -16,10 +16,10 @@
 }
 
 .sideOne {
-  background-color: #f2f2f2;
-  color: #555555;
-  flex-direction: column;
-  justify-content: center;
+  // background-color: #f2f2f2;
+  // color: #555555;
+  // flex-direction: column;
+  // justify-content: center;
 }
 
 .sideOne__div1 {
@@ -59,7 +59,7 @@
 }
 
 .sideOne__h1 {
-  font-size: 35rem;
+  font-size: $font-size-h1;
   margin-bottom: 5rem;
 }
 
@@ -67,12 +67,12 @@
   color: #6699cc;
 }
 
-.sideOne__p {
-  font-size: 8vw;
-  letter-spacing: 2px;
-  padding-left: 10px;
-  margin: 0;
-}
+// .sideOne__p {
+//   font-size: 8vw;
+//   letter-spacing: 2px;
+//   padding-left: 10px;
+//   margin: 0;
+// }
 
 .sideTwo {
   width: 100%;

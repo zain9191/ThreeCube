@@ -29,39 +29,47 @@
   }
 
   &__h1 {
-    font-size: $font-size-h1;
-    margin-bottom: 5rem;
+    margin-top: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__eye {
+      display: inline-block;
+      position: relative;
+      top: -10px; // Adjust the vertical position of the "eyes"
+      margin: 0 5px; // Space between the eyes
+    }
 
     &__dot {
       color: $color-tertiary-light;
     }
   }
 
-  &__p {
-    font-size: 8vw;
-    letter-spacing: 2px;
-    padding-left: 10px;
-    margin: 0;
+  &__smiley {
+    padding-left: 300px;
+    margin-top: -700px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: dotted red 4px;
+    height: 40%;
+
+    ;
+  }
+  &__p{
+    font-size: 8rem;
+    font-weight: 500;
+    padding-top: 150px;
+    
   }
 }
 
+.text {
+  font-size: 4rem;
+    height: 100%;
+    width: 100%;
+    fill: $color-tertiary-light
+}
 
-
-
-
-.smile-svg {
-    display: block;
-    margin: 0 auto;
-    width: 100%; /* Responsive SVG width */
-    max-width: 500px; /* Limit maximum width for larger screens */
-    height: auto; /* Maintain aspect ratio */
-  }
-  
-  path {
-    fill: transparent;
-  }
-  
-  text {
-    fill: #FF9800;
-    font-size: 35px; /* Specific font size for the SVG text */
-  }

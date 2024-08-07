@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm, ValidationError } from "@formspree/react";
+import linkedinLogo from '../assets/Logos/linkedin-logo.png'; // Update the path as needed
+import githubLogo from '../assets/Logos/githubLogo.png'; // Update the path as needed
 
 const SideSix = () => {
   const [state, handleSubmit] = useForm("xkndyvnb");
@@ -8,7 +10,9 @@ const SideSix = () => {
     return (
       <section id="contact" className="cubeFace contactMain success">
         <div className="container">
-        <p>Thank you for contacting us! <br /> We will get back to you as soon as possible.</p>
+          <p>
+            Thank you for contacting us! <br /> We will get back to you as soon as possible.
+          </p>
         </div>
       </section>
     );
@@ -17,7 +21,7 @@ const SideSix = () => {
   return (
     <section id="contact" className="cubeFace contactMain">
       <div className="container">
-        <h2>Contact Me</h2>
+        <h2 className="container__h2">Contact Me</h2>
         <p>Feel free to reach out with any questions or comments.</p>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -39,6 +43,21 @@ const SideSix = () => {
             Send
           </button>
         </form>
+        <footer className="contact-footer">
+          <p>Connect with me:</p>
+          <ul>
+            <li>
+              <a href="https://www.linkedin.com/in/zain-frayha" target="_blank" rel="noopener noreferrer">
+                <img src={linkedinLogo} alt="LinkedIn" />
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/zain9191" target="_blank" rel="noopener noreferrer">
+                <img src={githubLogo} alt="GitHub" />
+              </a>
+            </li>
+          </ul>
+        </footer>
       </div>
     </section>
   );

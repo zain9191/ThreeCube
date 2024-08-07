@@ -59,7 +59,7 @@ function SideTwo() {
             <p 
               ref={textRef1} 
               className='sideTwo__animated-text'>
-              I am a dedicated frontend developer specializing in crafting modern, responsive web applications. With a passion for clean code and user-centric design, I bring creativity and technical expertise to every project.
+              I am a dedicated web developer specializing in crafting modern, responsive web applications. With a passion for clean code and user-centric design, I bring creativity and technical expertise to every project.
             </p>
           </div>
           <div className="sideTwo__text">
