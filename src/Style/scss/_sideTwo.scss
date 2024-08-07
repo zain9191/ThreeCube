@@ -9,7 +9,7 @@
   width: 100%;
   height: 100%;
   background-color: $color-primary-light;
-  transition: background-color $transition-speed;
+  // transition: background-color $transition-speed;
 
   &-container {
     width: 100%;
@@ -32,7 +32,7 @@
     text-decoration: underline $color-tertiary-light;
     transition: color $transition-speed;
     // margin-bottom: 50px;
-    margin-top: 20px;
+    margin: 20px 0px 80px 20px;
   }
 
   &__content {
@@ -60,7 +60,7 @@
     height: auto;
     border-radius: $border-radius;
     transition: transform $transition-speed, box-shadow $transition-speed;
-    margin-bottom: 1rem;
+    // margin-bottom: 1rem;
     &:hover {
       transform: scale(1.01);
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -69,7 +69,7 @@
 
   &__animated-img {
     opacity: 0; /* Initially hide the image */
-    animation: fadeIn 2s ease-in-out forwards;
+    // animation: fadeIn 2s ease-in-out forwards;
   }
 
   &__text {

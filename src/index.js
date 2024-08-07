@@ -1,20 +1,17 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
-import { LanguageProvider } from './Context/LanguageContext';
 import { ThemeProvider } from './Context/ThemeContext';
-import Modal from 'react-modal'; // Import Modal
+import Modal from 'react-modal';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-Modal.setAppElement('#root'); // Set the app element for accessibility
+Modal.setAppElement('#root'); 
 
 root.render(
   <React.StrictMode>
-    <LanguageProvider>
       <ThemeProvider>
         <App />
       </ThemeProvider>
-    </LanguageProvider>
   </React.StrictMode>
 );

@@ -1,62 +1,68 @@
 #contact {
     background-color: $color-primary-light;
     color: $color-secondary-light;
-    padding: 50px 0;
-    border-left: 5px solid $color-tertiary-light;
-    border-radius: $border-radius; 
-    margin-bottom: 20px;
+ 
     width: $cube-size;
     height: $cube-size;
-    background-color: $color-primary-light;
+    font-size: $font-size-large;
+
   
     .container {
-      margin: 0 auto;
-      text-align: center;
-      background-color: $color-body-light;
-      border-radius: $border-radius;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: $cube-size;
-      height: $cube-size;
+      // margin: 0 auto;
+      // text-align: center;
+      // background-color: $color-primary-light;
+      // border-radius: $border-radius;
+      width: 95%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   
     form {
-      margin-top: 20px;
+      margin-top: 2%;
+      height: 90%;
+      width: 90%;
     }
   
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 3%;
+      // height: 30%;
+
     }
   
     label {
       display: block;
-      font-size: 1.1rem;
-      margin-bottom: 5px;
+      font-size: $font-size-large;
+      margin-bottom: 0.5%;
+
     }
   
     input[type="text"],
     input[type="email"],
     textarea {
       width: 100%;
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid $color-tertiary-light;
-      border-radius: 5px;
+      padding: 1%;
+      font-size: 4rem;
+      border: 0.1% solid $color-tertiary-light;
+      border-radius: 0.5%;
+
     }
   
     textarea {
       resize: vertical;
+      
     }
   
     button {
       background-color: $color-tertiary-light;
       color: $color-secondary-light;
-      padding: 10px 20px;
+      padding: 1% 2%;
       border: none;
-      border-radius: 5px;
-      font-size: 1rem;
+      border-radius: 0.5%;
+      font-size: 5rem;
       cursor: pointer;
-      transition: background-color $transition-speed ease;
   
       &:hover {
         background-color: darken($color-tertiary-light, 10%);

@@ -9,20 +9,21 @@ const CubeFace = ({ position, rotation, Component, isInside, currentSide, index 
   useEffect(() => {
     if (ref.current) {
       ref.current.lookAt(new Vector3(0, 0, 0));
+      console.debug(`CubeFace ${index} is looking at origin`);
     }
-  }, []);
+  }, [index]);
 
   const { color, opacity, scale } = useSpring({
     color: currentSide === index ? "#add8e6" : "white",
-    opacity: currentSide === index ? 1 : 0.9,
+    opacity: currentSide === index ? 1 : 0.2,
     scale: currentSide === index ? [1, 1, 1] : [0.9, 0.9, 0.9],
-    config: { tension: 170, friction: 126 }
+    config: { tension: 170, friction: 150 }
   });
 
   return (
     <animated.mesh position={position} rotation={rotation} ref={ref} scale={scale}>
       <planeGeometry args={[10, 10]} />
-      <animated.meshBasicMaterial
+      <animated.meshPhongMaterial
         color={color}
         side={DoubleSide}
         transparent={true}

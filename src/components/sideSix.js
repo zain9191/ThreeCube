@@ -5,7 +5,13 @@ const SideSix = () => {
   const [state, handleSubmit] = useForm("xkndyvnb");
 
   if (state.succeeded) {
-    return <p>Thank you for contacting us!</p>;
+    return (
+      <section id="contact" className="cubeFace contactMain success">
+        <div className="container">
+        <p>Thank you for contacting us! <br /> We will get back to you as soon as possible.</p>
+        </div>
+      </section>
+    );
   }
 
   return (

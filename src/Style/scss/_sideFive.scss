@@ -23,7 +23,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: transform $transition-speed ease-in-out, box-shadow $transition-speed ease-in-out;
+  // transition: transform $transition-speed ease-in-out, box-shadow $transition-speed ease-in-out;
   background-color: $color-primary-light;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .grid-item:hover {
-  transform: scale(1.05);
+  // transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   background-color: $color-hover-light;
 }

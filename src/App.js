@@ -2,7 +2,7 @@
 import React from 'react';
 import Scene from './components/Scene';
 import { useTheme, ThemeProvider } from './Context/ThemeContext';
-import { LanguageProvider } from './Context/LanguageContext';
+// import { LanguageProvider } from './Context/LanguageContext';
 import './Style/css/main.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -42,11 +42,11 @@ const App = () => {
 };
 
 const WrappedApp = () => (
-  <LanguageProvider>
+  // <LanguageProvider>
     <ThemeProvider>
       <App />
     </ThemeProvider>
-  </LanguageProvider>
+  // </LanguageProvider>
 );
 
 export default WrappedApp;

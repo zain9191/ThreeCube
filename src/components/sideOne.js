@@ -44,8 +44,9 @@ function SideOne() {
           </h1>
           <br />
           <h2 className="sideOne__p" ref={textRef}>
-            I am a web developer
-            <br /> <br />
+            <p className="smily">            I am a web developer
+            </p>
+            <br /> 
             <p>take a look at my portfolio</p>
           </h2>
         </div>

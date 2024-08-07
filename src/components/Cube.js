@@ -1,5 +1,3 @@
-// Cube.js
-
 import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { useThree } from '@react-three/fiber';
 import { Vector3, Euler } from 'three';
@@ -45,10 +43,9 @@ const Cube = () => {
     };
   }, []);
   
-  
-
   const handleWheel = useCallback((event) => {
-    event.preventDefault();
+    console.debug('Wheel event', event);
+    // event.preventDefault();
   }, []);
 
   useEffect(() => {
@@ -87,23 +84,27 @@ const Cube = () => {
     setIsDragging(true);
     initialMousePosition.current = [event.clientX, event.clientY];
     event.target.setPointerCapture(event.pointerId);
+    console.debug('Pointer down at:', initialMousePosition.current);
   }, []);
 
   const handlePointerUp = useCallback((event) => {
     setIsDragging(false);
     event.target.releasePointerCapture(event.pointerId);
+    console.debug('Pointer up');
   }, []);
 
-  // Here is where the new handlePointerMove function is integrated
   const handlePointerMove = useCallback((event) => {
     if (isDragging) {
       const deltaX = ((event.clientX - initialMousePosition.current[0]) / gl.domElement.clientWidth) * 2 * Math.PI;
       const deltaY = ((event.clientY - initialMousePosition.current[1]) / gl.domElement.clientHeight) * 2 * Math.PI;
+      console.debug('Pointer move delta:', { deltaX, deltaY });
+
       setTargetRotation(new Euler(
         targetRotation.x + deltaY,
         targetRotation.y + deltaX,
         0
       ));
+
       initialMousePosition.current = [event.clientX, event.clientY];
     }
   }, [isDragging, gl.domElement.clientWidth, gl.domElement.clientHeight, targetRotation]);
@@ -126,7 +127,7 @@ const Cube = () => {
         camera.lookAt(ref.current.position);
       },
       onComplete: () => {
-        console.debug('Animation complete');
+        console.debug('Camera animation complete');
       }
     });
 
@@ -142,6 +143,9 @@ const Cube = () => {
             rotations[newSide].y,
             rotations[newSide].z
           ));
+        },
+        onComplete: () => {
+          console.debug('Cube rotation animation complete');
         }
       });
     }
@@ -149,6 +153,7 @@ const Cube = () => {
 
   useEffect(() => {
     const handleAdjustCubeRotation = (event) => {
+      console.debug('Adjusting cube rotation:', event.detail);
       if (event.detail === 'next') {
         changeSide(1);
       } else if (event.detail === 'previous') {
@@ -173,6 +178,7 @@ const Cube = () => {
         position.z >= -cubeSize && position.z <= cubeSize
       );
       setIsInside(isInsideCube);
+      console.debug('Is inside cube:', isInsideCube);
     };
 
     checkIfInside();
@@ -181,6 +187,7 @@ const Cube = () => {
   // Expose the camera globally for debugging
   useEffect(() => {
     window.camera = camera;
+    console.debug('Camera set globally:', camera);
   }, [camera]);
 
   const components = [
@@ -206,7 +213,7 @@ const Cube = () => {
       ref={ref}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
-      onPointerMove={handlePointerMove} // Attach the event handler here
+      onPointerMove={handlePointerMove}
       position={[0, 0, 0]}
     >
       {components.map((Component, index) => (

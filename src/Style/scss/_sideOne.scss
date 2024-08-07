@@ -1,90 +1,67 @@
-@import './variables';
+@import "./variables";
 
 .sideOne {
-    background-color: $color-primary-light;
-    color: $color-secondary-light;
-    flex-direction: column;
-    justify-content: center;
-    width: $cube-size;
-    height: $cube-size;
+  background-color: $color-primary-light;
+  color: $color-secondary-light;
+  flex-direction: column;
+  justify-content: center;
+  width: $cube-size;
+  height: $cube-size;
 
+  &__div1 {
+    width: 100%;
+    height: 100%;
+  }
 
-    // border-left: 5px solid $color-tertiary-light;
-    // margin: 2% 0;
+  &__container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
 
-
-    &__div1 {
-        // Add styles here if needed
-            // border: dotted red 5px;
-            width: 100%;
-            height: 100%;
-
+    @media (max-width: 768px) {
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin-left: 0;
     }
+  }
 
-    &__div2 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-            // border: dotted red 1px;
-            width: 50%;
-            height: 100%;
-            &>img{
-                height: 80%;
-                width: 80%;
-                object-fit: cover;
-            }
+  &__h1 {
+    font-size: $font-size-h1;
+    margin-bottom: 5rem;
 
-
+    &__dot {
+      color: $color-tertiary-light;
     }
+  }
 
-    &__container {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        align-items: center;
-        // margin-left: 5%;
-        height: 100%;
-
-
-        @media (max-width: 768px) {
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: flex-start;
-            margin-left: 0;
-
-
-        }
-    }
-
-    &__h1 {
-        font-size: $font-size-h1;
-        margin-bottom: 5rem;
-        // font-weight: 900;
-                    // margin-top: 5vw;
-
-        &__dot {
-            color: $color-tertiary-light;
-        }
-    }
-
-    &__p {
-        font-size: 8vw;
-        letter-spacing: 2px;
-        padding-left: 10px;
-        margin: 0;
-
-        // @media (min-width: 768px) {
-        //     font-size: 3vw;
-        // }
-    }
+  &__p {
+    font-size: 8vw;
+    letter-spacing: 2px;
+    padding-left: 10px;
+    margin: 0;
+  }
 }
 
-.app-container.light {
-    background-color: $color-body-light;
-    color: $color-secondary-light;
-}
 
-.app-container.dark {
-    background-color: $color-body-dark;
-    color: $color-secondary-dark;
-}
+
+
+
+.smile-svg {
+    display: block;
+    margin: 0 auto;
+    width: 100%; /* Responsive SVG width */
+    max-width: 500px; /* Limit maximum width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  path {
+    fill: transparent;
+  }
+  
+  text {
+    fill: #FF9800;
+    font-size: 35px; /* Specific font size for the SVG text */
+  }
