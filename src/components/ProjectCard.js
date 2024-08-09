@@ -22,7 +22,8 @@ const modalStyles = {
   },
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.75)",
-    zIndex: 30000,  },
+    zIndex: 30000,
+  },
 };
 
 const ProjectCard = ({
@@ -52,26 +53,29 @@ const ProjectCard = ({
     };
   }, []);
 
-  // ---------------------- hide cube
   useEffect(() => {
     const canvas = document.querySelector('canvas');
     const buttons = document.querySelectorAll('button');
-    
+    const customLabels = document.querySelectorAll('.custom-label');
+
     if (modalIsOpen) {
       canvas.style.display = 'none';
       buttons.forEach(button => {
         button.style.display = 'none';
+      });
+      customLabels.forEach(label => {
+        label.style.display = 'none';
       });
     } else {
       canvas.style.display = 'block';
       buttons.forEach(button => {
         button.style.display = 'block';
       });
+      customLabels.forEach(label => {
+        label.style.display = 'block';
+      });
     }
   }, [modalIsOpen]);
-  
-    // ----------------------
-
 
   useEffect(() => {
     const html = document.documentElement;
