@@ -10,8 +10,10 @@ import SideFour from './sideFour';
 import SideFive from './SideFive';
 import sideSix from './sideSix';
 import CubeFace from './CubeFace';
+import { useTheme } from '../Context/ThemeContext'; 
 
 const Cube = () => {
+  const { theme } = useTheme(); // Use the theme context
   const ref = useRef();
   const { gl, camera } = useThree();
   const [isDragging, setIsDragging] = useState(false);
@@ -20,7 +22,7 @@ const Cube = () => {
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 0, 15));
   const [currentSide, setCurrentSide] = useState(0);
   const [isInside, setIsInside] = useState(false);
-  const [isVisible, setIsVisible] = useState(true); 
+  const [isVisible, setIsVisible] = useState(true);
 
   // Handle visibility events
   useEffect(() => {
@@ -44,8 +46,7 @@ const Cube = () => {
   }, []);
   
   const handleWheel = useCallback((event) => {
-    console.debug('Wheel event', event);
-    // event.preventDefault();
+    // console.debug('Wheel event', event);
   }, []);
 
   useEffect(() => {
@@ -84,20 +85,20 @@ const Cube = () => {
     setIsDragging(true);
     initialMousePosition.current = [event.clientX, event.clientY];
     event.target.setPointerCapture(event.pointerId);
-    console.debug('Pointer down at:', initialMousePosition.current);
+    // console.debug('Pointer down at:', initialMousePosition.current);
   }, []);
 
   const handlePointerUp = useCallback((event) => {
     setIsDragging(false);
     event.target.releasePointerCapture(event.pointerId);
-    console.debug('Pointer up');
+    // console.debug('Pointer up');
   }, []);
 
   const handlePointerMove = useCallback((event) => {
     if (isDragging) {
       const deltaX = ((event.clientX - initialMousePosition.current[0]) / gl.domElement.clientWidth) * 2 * Math.PI;
       const deltaY = ((event.clientY - initialMousePosition.current[1]) / gl.domElement.clientHeight) * 2 * Math.PI;
-      console.debug('Pointer move delta:', { deltaX, deltaY });
+      // console.debug('Pointer move delta:', { deltaX, deltaY });
 
       setTargetRotation(new Euler(
         targetRotation.x + deltaY,
@@ -115,7 +116,7 @@ const Cube = () => {
     setTargetRotation(rotations[newSide]);
     setTargetPosition(positions[newSide]);
 
-    console.debug(`Changing to side: ${newSide}`);
+    // console.debug(`Changing to side: ${newSide}`);
 
     gsap.to(camera.position, {
       duration: 2, //  animation in seconds
@@ -127,7 +128,7 @@ const Cube = () => {
         camera.lookAt(ref.current.position);
       },
       onComplete: () => {
-        console.debug('Camera animation complete');
+        // console.debug('Camera animation complete');
       }
     });
 
@@ -145,7 +146,7 @@ const Cube = () => {
           ));
         },
         onComplete: () => {
-          console.debug('Cube rotation animation complete');
+          // console.debug('Cube rotation animation complete');
         }
       });
     }
@@ -153,7 +154,7 @@ const Cube = () => {
 
   useEffect(() => {
     const handleAdjustCubeRotation = (event) => {
-      console.debug('Adjusting cube rotation:', event.detail);
+      // console.debug('Adjusting cube rotation:', event.detail);
       if (event.detail === 'next') {
         changeSide(1);
       } else if (event.detail === 'previous') {
@@ -178,16 +179,15 @@ const Cube = () => {
         position.z >= -cubeSize && position.z <= cubeSize
       );
       setIsInside(isInsideCube);
-      console.debug('Is inside cube:', isInsideCube);
+      // console.debug('Is inside cube:', isInsideCube);
     };
 
     checkIfInside();
   }, [camera]);
 
-  // Expose the camera globally for debugging
   useEffect(() => {
     window.camera = camera;
-    console.debug('Camera set globally:', camera);
+    // console.debug('Camera set globally:', camera);
   }, [camera]);
 
   const components = [
@@ -215,6 +215,7 @@ const Cube = () => {
       onPointerUp={handlePointerUp}
       onPointerMove={handlePointerMove}
       position={[0, 0, 0]}
+      style={{ color: theme === 'dark' ? 'white' : 'black' }} // Apply theme
     >
       {components.map((Component, index) => (
         <CubeFace

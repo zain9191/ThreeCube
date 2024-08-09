@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+
 import ProjectCard from "../components/ProjectCard";
 
 import KanapHomeSmall from "../assets/Porojects/kanap/KanapHomeSmall.png";

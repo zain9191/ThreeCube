@@ -9,14 +9,10 @@
   width: 100%;
   height: 100%;
   background-color: $color-primary-light;
-  // transition: background-color $transition-speed;
 
   &-container {
     width: 100%;
     height: 100%;
-    // padding: 2rem;
-    // margin: auto;
-    // display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -31,9 +27,7 @@
     text-align: center;
     text-decoration: underline $color-tertiary-light;
     text-underline-offset: 30px;
-
     transition: color $transition-speed;
-    // margin-bottom: 50px;
     margin: 20px 0px 80px 20px;
   }
 
@@ -44,7 +38,7 @@
     text-align: center;
     margin: 1rem;
   }
-  
+
   &__div {
     display: flex;
     flex-direction: column;
@@ -62,7 +56,7 @@
     height: auto;
     border-radius: $border-radius;
     transition: transform $transition-speed, box-shadow $transition-speed;
-    // margin-bottom: 1rem;
+
     &:hover {
       transform: scale(1.01);
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -70,8 +64,9 @@
   }
 
   &__animated-img {
-    opacity: 0; /* Initially hide the image */
-    // animation: fadeIn 2s ease-in-out forwards;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+    animation-delay: 0s;
   }
 
   &__text {
@@ -82,9 +77,10 @@
     margin-top: 1rem;
 
     p {
-      // margin-bottom: 1rem;s
+      margin-bottom: 1rem;
+
       &:last-of-type {
-        // margin-bottom: 0;
+        margin-bottom: 0;
       }
     }
   }
@@ -93,42 +89,38 @@
   &__animated-text--delay,
   &__animated-text--delay-more {
     display: inline-block;
-    // margin: 0 auto;
-    letter-spacing: .15em;
-    opacity: 0; /* Initially hide the text */
+    letter-spacing: 0.15em;
+    opacity: 0;
     animation: fadeIn 2s ease-in-out forwards;
   }
 
-  &__animated-img {
-    animation-delay: 0s; /* Image appears first */
-  }
-
   &__animated-text {
-    animation-delay: 2s; /* Text appears after the image */
+    animation-delay: 2s;
   }
 
   &__animated-text--delay {
-    animation-delay: 4s; /* Next text block */
+    animation-delay: 4s;
   }
 
   &__animated-text--delay-more {
-    animation-delay: 6s; /* Last text block */
-  }
-}
-
-@media (max-width: 768px) {
-  .sideTwo__img {
-    width: 100%;
-    max-width: 100%;
+    animation-delay: 6s;
   }
 
-  .sideTwo__text {
-    font-size: $font-size-medium;
-  }
+  @media (max-width: 768px) {
+    &__h2 {
+      font-size: $font-size-medium;
+    }
 
-  .sideTwo__animated-text,
-  .sideTwo__animated-text--delay,
-  .sideTwo__animated-text--delay-more {
-    font-size: $font-size-medium;
+    &__img {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    &__text,
+    &__animated-text,
+    &__animated-text--delay,
+    &__animated-text--delay-more {
+      font-size: $font-size-medium;
+    }
   }
 }

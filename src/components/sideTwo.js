@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import HomeImg from "../assets/image.png";
+import HomeImg from '../assets/image.png';
 
-function SideTwo() {
+const SideTwo = () => {
   const imgRef = useRef(null);
   const textRef1 = useRef(null);
   const textRef2 = useRef(null);
@@ -13,16 +13,16 @@ function SideTwo() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (entry.target === imgRef.current) {
-              imgRef.current.classList.add("sideTwo__animated-img--active");
+              imgRef.current.classList.add('sideTwo__animated-img--active');
             }
             if (entry.target === textRef1.current) {
-              textRef1.current.classList.add("sideTwo__animated-text--active");
+              textRef1.current.classList.add('sideTwo__animated-text--active');
             }
             if (entry.target === textRef2.current) {
-              textRef2.current.classList.add("sideTwo__animated-text--active");
+              textRef2.current.classList.add('sideTwo__animated-text--active');
             }
             if (entry.target === textRef3.current) {
-              textRef3.current.classList.add("sideTwo__animated-text--active");
+              textRef3.current.classList.add('sideTwo__animated-text--active');
             }
             observer.unobserve(entry.target);
           }
@@ -78,6 +78,6 @@ function SideTwo() {
       </div>
     </div>
   );
-}
+};
 
 export default SideTwo;

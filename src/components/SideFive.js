@@ -39,7 +39,6 @@ const SideFive = () => {
       if (ref) observer.observe(ref);
     });
 
-    // Clean up observer on component unmount
     return () => {
       logoRefs.current.forEach((ref) => {
         if (ref) observer.unobserve(ref);

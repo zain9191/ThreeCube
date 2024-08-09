@@ -1,14 +1,14 @@
 // App.js
 import React from 'react';
 import Scene from './components/Scene';
-import { useTheme, ThemeProvider } from './Context/ThemeContext';
-// import { LanguageProvider } from './Context/LanguageContext';
+import { useTheme } from './Context/ThemeContext';
 import './Style/css/main.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
   const { theme, toggleTheme } = useTheme();
+  console.log('App:', { theme, toggleTheme }); 
 
   const handleNext = () => {
     console.log('Next button clicked');
@@ -27,7 +27,7 @@ const App = () => {
       <Scene />
       <div className="button-container">
         <button className="button-previous" onClick={handlePrevious}>
-          <FontAwesomeIcon icon={faChevronLeft} /> 
+          <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <button className="button-next" onClick={handleNext}>
           <FontAwesomeIcon icon={faChevronRight} />
@@ -41,12 +41,4 @@ const App = () => {
   );
 };
 
-const WrappedApp = () => (
-  // <LanguageProvider>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  // </LanguageProvider>
-);
-
-export default WrappedApp;
+export default App;

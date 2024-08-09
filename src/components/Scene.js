@@ -5,7 +5,7 @@ import Cube from './Cube';
 
 const Scene = React.memo(() => {
   useEffect(() => {
-    console.debug('Scene mounted');
+    // console.debug('Scene mounted');
   }, []);
 
   return (
