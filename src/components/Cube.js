@@ -23,6 +23,8 @@ const Cube = () => {
   const [currentSide, setCurrentSide] = useState(0);
   const [isInside, setIsInside] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const isMobile = window.innerWidth <= 768;
+
 
   // Handle visibility events
   useEffect(() => {
@@ -73,13 +75,14 @@ const Cube = () => {
   ], []);
 
   const positions = useMemo(() => [
-    new Vector3(0, 0, 80),                  
-    new Vector3(0, 0, -80),                 
-    new Vector3(0, 0, 80),                   
-    new Vector3(0, 0, -80),                  
-    new Vector3(0, 0, -80),            
-    new Vector3(0, 0, -80),               
-  ], []);
+    new Vector3(0, 0, isMobile ? 120 : 80),  // Further away for mobile
+    new Vector3(0, 0, isMobile ? -120 : -80),
+    new Vector3(0, 0, isMobile ? 120 : 80),
+    new Vector3(0, 0, isMobile ? -120 : -80),
+    new Vector3(0, 0, isMobile ? -120 : -80),
+    new Vector3(0, 0, isMobile ? -120 : -80),
+  ], [isMobile]);
+  
 
   const handlePointerDown = useCallback((event) => {
     setIsDragging(true);
