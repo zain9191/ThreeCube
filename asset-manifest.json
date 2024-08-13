@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/Personal-Portfolio/static/css/main.4955e658.css",
+    "main.js": "/Personal-Portfolio/static/js/main.44df3f9b.js",
+    "static/media/KanapHome.png": "/Personal-Portfolio/static/media/KanapHome.f18a566c14426ccd8864.png",
+    "static/media/Kasa-home.png": "/Personal-Portfolio/static/media/Kasa-home.c1475730d018708393bc.png",
+    "static/media/KanapHome2.png": "/Personal-Portfolio/static/media/KanapHome2.64b32fcca47e2d240b28.png",
+    "static/media/KanapHome3.png": "/Personal-Portfolio/static/media/KanapHome3.e3f8b944f7fc7d2b7418.png",
+    "static/media/KanapHome1.png": "/Personal-Portfolio/static/media/KanapHome1.56418b9e9a28cd5e0a47.png",
+    "static/media/pantherHome1.png": "/Personal-Portfolio/static/media/pantherHome1.a9ab6b4d93e3e9c18564.png",
+    "static/media/Kasa-2.png": "/Personal-Portfolio/static/media/Kasa-2.1f226af8f6a432324fd2.png",
+    "static/media/pantherHome3.png": "/Personal-Portfolio/static/media/pantherHome3.36a6c5d3db14b8dff264.png",
+    "static/media/Kasa-4.png": "/Personal-Portfolio/static/media/Kasa-4.b0bf74c8b974328cb4a1.png",
+    "static/media/pantherHome2.png": "/Personal-Portfolio/static/media/pantherHome2.a9b862f0353c558fbd95.png",
+    "static/media/pantherHome.png": "/Personal-Portfolio/static/media/pantherHome.5d63a4de7bbfe2430217.png",
+    "static/media/Kasa-1.png": "/Personal-Portfolio/static/media/Kasa-1.146ca9d5e5ef2f887589.png",
+    "static/media/Kasa-3.png": "/Personal-Portfolio/static/media/Kasa-3.3b41ba57743e5a813360.png",
+    "static/media/P6Home2.png": "/Personal-Portfolio/static/media/P6Home2.1ab80a02f6f0160c4039.png",
+    "static/media/P6Home.png": "/Personal-Portfolio/static/media/P6Home.2409d133cb0056ce6409.png",
+    "static/media/Kasa-5.png": "/Personal-Portfolio/static/media/Kasa-5.2d22d6429a92329708d1.png",
+    "static/media/KanapHomeLarge.png": "/Personal-Portfolio/static/media/KanapHomeLarge.aa76b23ce0ba16455226.png",
+    "static/media/image.png": "/Personal-Portfolio/static/media/image.068146ac7c8eb8f6d831.png",
+    "static/media/P6Home-s.png": "/Personal-Portfolio/static/media/P6Home-s.9063c2274f66cb2285fd.png",
+    "static/media/P6Home-large.png": "/Personal-Portfolio/static/media/P6Home-large.6a49f7944245442f2705.png",
+    "static/media/P6Home3.png": "/Personal-Portfolio/static/media/P6Home3.d19a0f8d1cd33481b489.png",
+    "static/media/pantherHomeSmall.png": "/Personal-Portfolio/static/media/pantherHomeSmall.9bcfb9ef268ef4e79fed.png",
+    "static/media/Kasa-home-s.png": "/Personal-Portfolio/static/media/Kasa-home-s.5bfcc310b3f77621f3e0.png",
+    "static/media/KanapHomeSmall.png": "/Personal-Portfolio/static/media/KanapHomeSmall.5d26150da97f61b0353c.png",
+    "static/media/P6Home1.png": "/Personal-Portfolio/static/media/P6Home1.3a234e90da54fd25f992.png",
+    "static/media/ExpressLogo.png": "/Personal-Portfolio/static/media/ExpressLogo.618132064ec21fdcb743.png",
+    "index.html": "/Personal-Portfolio/index.html",
+    "main.4955e658.css.map": "/Personal-Portfolio/static/css/main.4955e658.css.map",
+    "main.44df3f9b.js.map": "/Personal-Portfolio/static/js/main.44df3f9b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4955e658.css",
+    "static/js/main.44df3f9b.js"
+  ]
+}
